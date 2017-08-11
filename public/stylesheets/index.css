@@ -1,0 +1,33 @@
+body { 
+  background: url("../images/index-bg2.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+header{
+	padding: 10px;
+}
+
+#main_div{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 8%;
+	height: 473px;
+	width: 400px;
+	background-color: #f8f2f1;
+	border-radius: 20px;
+	border: 2px solid grey;
+}
+
+#containerForm{
+	height: 273px;
+	width: 400px;
+}
+
+.panel-body{
+	height: 250px;
+}
+
+
