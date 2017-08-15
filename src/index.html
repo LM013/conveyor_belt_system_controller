@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="public/stylesheets/index.css"/>
   <link rel="stylesheet" href="materialize-css/css/materialize.min.css">
+  <script type="text/javascript" src="jquery/jquery.min.js"></script>
   
 </head>
 
@@ -23,7 +24,7 @@
 	
 		<div id="containerForm">
 			<div class="row">
-			    <form class="col s12" id="loginForm" method="GET" action="/login">
+			    <form class="col s12" id="loginForm">
 			      <div class="row">
 			        <div class="input-field col s10">
 			          <i class="material-icons prefix">account_circle</i>
@@ -40,11 +41,15 @@
 			        </div>
 			      </div> 
 
-			     <button class="btn waves-effect waves-light" type="submit">LOGIN
-   				 <i class="material-icons right">send</i>
-  			     </button>
-  			    </form>
+			      <div class="row">
+			        <div class="input-field col s10">
+			          <input value="LOGIN" type="submit" class="btn waves-effect waves-light validate">
+			         </div>
+			      </div> 
 
+
+  			    </form>
+  			     </button>
 			</div>      
 		</div>
 		<hr>
@@ -56,6 +61,49 @@
 
 
   <script src="materialize-css/js/materialize.min.js"></script>
-  
+  <script type="text/javascript">
+  	$('document').ready(function(){
+  		$('#username').val('');
+		$('#password').val('');
+  	});
+  	$('#loginForm').on('submit', function(e){
+  		e.preventDefault();
+  		var username = $('#username').val();
+		var password = $('#password').val();
+		var message = '';
+		var data = "username=" + username + "&password=" + password;
+		if(username!=''&&password!=''){
+			fetch('/api/account/login', {
+				method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept':'application/json'
+                },
+                body: data
+			})
+			.then((res) => {
+				switch (res.status) {
+                    case 403: message = 'Username and Password combination'
+                        + ' does not match!'; break;
+                    case 404: message = 'Username is not registered to'
+                     + ' any account!'; break;
+                    case 500: message = 'Log-in failed. Please try again.';
+                        break;
+                    default: message = 'Error logging in!'; break;
+                }
+                if (res.status === 200) {
+                    alert("log in very good!");
+                } else {
+                    Materialize.toast(message, 4000, 'red');
+				}
+			});
+		} else {
+			Materialize.toast("Username and Password Required", 3000, 'red');
+		}
+	});
+
+  </script>
+
 </body>
 </html>
