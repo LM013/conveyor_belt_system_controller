@@ -54,7 +54,6 @@ $('#loginForm').on('submit', function(e){
 	            default: message = 'Error logging in!'; break;
 	        }
 	        if (res.status === 200) {
-	            alert("log in very good!");
 	            window.location.href="/home";
 	        } else {
 	            Materialize.toast(message, 4000, 'red');
@@ -90,7 +89,7 @@ $('#signupForm').on('submit', function(e){
 	            default: message = 'Error signing up!'; break;
 	        }
 	        if (res.status === 200) {
-	            alert("sign up very good!");
+	        	window.location.href="/home";
 	        } else {
 	            Materialize.toast(message, 4000, 'red');
 			}
