@@ -1,0 +1,41 @@
+body { 
+  background-color: lightgrey;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+header{
+	background-color: #00868B;	
+	height: 70px;
+	color: #ffffff;
+	padding-left: 11px;
+	padding-right: 11px;
+	padding-top: 8px;
+	font-size: 20px;
+}
+
+#homeButton{
+	float: left;
+	width: 70px;
+	padding-top: 0;
+}
+
+#userHeader{
+	float:left;
+	padding-top: 11px;
+	padding-left: 7px;
+}
+
+#logoutButton{
+	float: right;
+	width: 400px;
+	text-align: right;
+	padding-top: 11px;	
+	padding-right: 11px;
+}
+
+i.icon-white{
+	color: #ffffff;
+}
