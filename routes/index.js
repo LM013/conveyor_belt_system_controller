@@ -10,5 +10,9 @@ router.get('/home', function(req, res, next){
 	res.sendFile('home.html', { root: __dirname + '/../src/'} );
 });
 
+router.get('/jogging', function(req, res, next){
+	res.sendFile('jogging.html', { root: __dirname + '/../src/'} );
+})
+
 
 module.exports = router;
