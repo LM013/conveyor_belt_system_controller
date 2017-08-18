@@ -60,7 +60,7 @@ $('#loginForm').on('submit', function(e){
 			}
 		});
 	} else {
-		Materialize.toast("Username and Password Required", 3000, 'red');
+		Materialize.toast("Username and Password Required", 3000, 'red lighten-1');
 	}
 });
 
@@ -84,8 +84,7 @@ $('#signupForm').on('submit', function(e){
 		})
 		.then((res) => {
 			switch (res.status) {
-	            case 403: message = 'User already exists'; break;
-	            case 404: message = 'Username already taken'; break;
+	            case 403: message = 'Username already taken'; break;
 	            case 500: message = 'Sign up failed. Please try again.'; break;
 	            default: message = 'Error signing up!'; break;
 	        }
@@ -96,6 +95,6 @@ $('#signupForm').on('submit', function(e){
 			}
 		});
 	} else {
-		Materialize.toast("Please fill up all fields", 3000, 'red');
+		Materialize.toast("Please fill up all fields", 3000, 'red lighten-1');
 	}
 });
