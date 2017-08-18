@@ -48,11 +48,11 @@ module.exports= {
             if(!err){
                 res.status(200).send("signed up");
             } else {
-                console.log(err.code);
+                console.log(err);
                 if(err.code == 'ER_DUP_ENTRY'){
-                    console.log("duplicate!");
+                    res.status(403).send({status: 'Username already exists'});
                 }
-                res.status(500).send("bad");
+                res.status(500).send({status: 'error'});
             }
         });
     }
