@@ -8,17 +8,55 @@
   <!-- Stylesheets -->
   <link rel="shortcut icon" href="public/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="public/stylesheets/index.css"/>
+  <link rel="stylesheet" href="public/stylesheets/home.css"/>
   <link rel="stylesheet" href="materialize-css/css/materialize.min.css">
   <script type="text/javascript" src="jquery/jquery.min.js"></script>
 </head>
 
 <body>
-	DANKE
+	  <div id="cardHolder" class="row">
+    </div>
   <!-- Javascripts -->
   <script src="materialize-css/js/materialize.min.js"></script>
   <script src="justflipit/justflipit.min.js"></script>
   <script src="jquery/jquery.min.js" type="text/javascript"></script>
-  <script src="public/js/index.js"></script>
+  <script src="public/js/home.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      for(var i = 1; i <= 6; i++){
+        $('#cardHolder').append(
+          $('<a>')
+            .attr("href", "operation")
+            .append(
+              $('<div/>')
+                .attr("class", "col s12 m4")
+                .append(
+                  $('<div/>')
+                    .attr("class", "card-panel teal")
+                    .append(
+                      $('<span/>')
+                      .attr("class", "white-text")
+                      .text("Controller #"+i)
+                    )
+                )  
+            )     
+        )
+      }
+    });
+  </script>
 </body>
 </html>
+
+
+<!---
+ <div class="row">
+    <div class="col s12 m5">
+      <div class="card-panel teal">
+        <span class="white-text">I am a very simple card. I am good at containing small bits of information.
+        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+        </span>
+      </div>
+    </div>
+  </div>
+-->

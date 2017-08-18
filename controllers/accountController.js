@@ -48,7 +48,6 @@ module.exports= {
             if(!err){
                 res.status(200).send("signed up");
             } else {
-                console.log(err);
                 if(err.code == 'ER_DUP_ENTRY'){
                     res.status(403).send({status: 'Username already exists'});
                 }
