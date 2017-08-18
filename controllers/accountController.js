@@ -45,6 +45,9 @@ module.exports= {
     signup: function(req, res){
         connection.query("INSERT Accounts (firstName, lastName, username, password) values (?, ?, ?, MD5(SHA1(?)))", [req.body.first_name, req.body.last_name, req.body.new_username, req.body.new_password], function(err, rows, fields){
             if(!err){
+                /*if(rows.length != 0){
+                    res.status(403).send({status: 'User already exists'});
+                }*/
                 res.status(200).send("signed up");
             } else {
                 console.log(err);

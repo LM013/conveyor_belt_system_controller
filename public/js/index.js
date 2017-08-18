@@ -27,11 +27,8 @@ $(document).ready(function(){
 	$('#password').val('');
 });
 
-$("#signuptbtn").click(signUp);
+//$("#signuptbtn").click(signUp);
 
-function signUp(){
-	alert("hello");
-}
 $('#loginForm').on('submit', function(e){
 	e.preventDefault();
 	var username = $('#username').val();
@@ -66,5 +63,41 @@ $('#loginForm').on('submit', function(e){
 		});
 	} else {
 		Materialize.toast("Username and Password Required", 3000, 'red');
+	}
+});
+
+$('#signupForm').on('submit', function(e){
+	e.preventDefault();
+	var firstName = $('#first_name').val();
+	var lastName = $('#last_name').val();
+	var new_username = $('#new_username').val();
+	var new_password = $('#new_password').val();
+	var message = '';
+	var data = "first_name=" + firstName+"&last_name=" + lastName +"&new_username=" + new_username + "&new_password=" + new_password;
+	if(username!=''&&password!=''&&firstName!=''&&lastName!=''){
+		fetch('/api/account/signup', {
+			method: 'POST',
+	        credentials: 'include',
+	        headers: {
+	            'Content-Type': 'application/x-www-form-urlencoded',
+	            'Accept':'application/json'
+	        },
+	        body: data
+		})
+		.then((res) => {
+			switch (res.status) {
+	            case 403: message = 'User already exists'; break;
+	            case 404: message = 'Username already taken'; break;
+	            case 500: message = 'Sign up failed. Please try again.'; break;
+	            default: message = 'Error signing up!'; break;
+	        }
+	        if (res.status === 200) {
+	            alert("sign up very good!");
+	        } else {
+	            Materialize.toast(message, 4000, 'red');
+			}
+		});
+	} else {
+		Materialize.toast("Please fill up all fields", 3000, 'red');
 	}
 });
