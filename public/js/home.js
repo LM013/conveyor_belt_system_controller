@@ -8,7 +8,7 @@ $(document).ready(function(){
             .attr("class", "col s12 m4")
             .append(
               $('<div/>')
-                .attr("class", "card-panel teal")
+                .attr("class", "card-panel blue-grey darken-1")
                 .append(
                   $('<span/>')
                   .attr("class", "white-text")

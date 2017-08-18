@@ -1,0 +1,56 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Controller</title>
+
+  <!-- Stylesheets -->
+  <link rel="shortcut icon" href="public/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="public/stylesheets/operation.css"/>
+  <link rel="stylesheet" href="public/stylesheets/jogging.css"/>
+  <link rel="stylesheet" href="materialize-css/css/materialize.min.css">
+  <script type="text/javascript" src="jquery/jquery.min.js"></script>
+</head>
+
+<body>
+	<header>
+		<div id="homeButton">
+			<a href="/home" class="btn-floating btn-large waves-effect waves-light">
+			<i class="material-icons prefix icon-white" style="font-size: 45px" id="home">home</i>	
+			</a>
+		</div>
+
+		<div id="userHeader" style="font-size: 18px;">
+			<span> SUP, DIMSUM! </span>
+		</div>
+
+		<div id="logoutButton" style="font-size: 15px;">
+			<span> SIGN OUT </span>
+		</div>	
+	</header>
+
+	<div id="controlPanel" class="container">
+		<div class="row">
+	        <div class="input-field col s14">
+		    	<a class="waves-effect waves-light btn-large red darken-3">STOP</a>			    	
+		    	<a class="waves-effect waves-light btn-large blue darken-3">FORWARD</a>
+		    	<a class="waves-effect waves-light btn-large yellow darken-3">REVERSE</a>
+	        </div>
+	    </div> 
+
+      	<div class="row">
+        	<div class="input-field col s12 m15">
+	          <a class="waves-effect waves-black btn-flat">0.5m</a>
+	          <a class="waves-effect waves-black btn-flat">1.0m</a>				    	
+	          <a class="waves-effect waves-black btn-flat">1.5m</a>
+	          <a class="waves-effect waves-black btn-flat">2.0m</a>
+	          <a class="waves-effect waves-black btn-flat">2.5m</a>
+	          <a class="waves-effect waves-black btn-flat">3.0m</a>	
+	        </div>
+      	</div>
+	</div>
+	
+</body>
+</html>
