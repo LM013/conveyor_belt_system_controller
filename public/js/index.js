@@ -55,6 +55,7 @@ $('#loginForm').on('submit', function(e){
 	        }
 	        if (res.status === 200) {
 	            alert("log in very good!");
+	            window.location.href="/home";
 	        } else {
 	            Materialize.toast(message, 4000, 'red');
 			}

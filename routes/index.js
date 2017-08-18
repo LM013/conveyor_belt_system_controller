@@ -6,5 +6,9 @@ router.get('/', function(req, res, next) {
 	res.sendFile('index.html', { root: __dirname + '/../src/'} );
 });
 
+router.get('/home', function(req, res, next){
+	res.sendFile('home.html', { root: __dirname + '/../src/'});
+});
+
 
 module.exports = router;
