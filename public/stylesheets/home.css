@@ -1,0 +1,28 @@
+body { 
+  background-color: lightgrey;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+header{
+	background-color: #00868B;	
+	height: 70px;
+	padding: 15px;
+}
+
+i.icon-white{
+	color: #ffffff;
+}
+
+#cardHolder{
+	padding-left: 120px;
+	padding-top: 120px;
+}
+
+.card-panel{
+	height: 200px;
+	width: 320px;
+	text-align: center;
+}

@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/home', function(req, res, next){
-	res.sendFile('home.html', { root: __dirname + '/../src/'});
+	res.sendFile('home.html', { root: __dirname + '/../src/'} );
 });
 
 router.get('/operation', function(req, res, next){
