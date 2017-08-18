@@ -40,5 +40,16 @@ module.exports= {
         } else {
             res.status(404).send({status: 'not good'});
         }
+    },
+
+    signup: function(req, res){
+        connection.query("INSERT Accounts (firstName, lastName, username, password) values (?, ?, ?, MD5(SHA1(?)))", [req.body.first_name, req.body.last_name, req.body.new_username, req.body.new_password], function(err, rows, fields){
+            if(!err){
+                res.status(200).send("signed up");
+            } else {
+                console.log(err);
+                res.status(500).send({status: 'error'});
+            }
+        });
     }
 }
