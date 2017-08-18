@@ -43,6 +43,7 @@ module.exports= {
     },
 
     signup: function(req, res){
+        console.log(req);
         connection.query("INSERT Accounts (firstName, lastName, username, password) values (?, ?, ?, MD5(SHA1(?)))", [req.body.first_name, req.body.last_name, req.body.new_username, req.body.new_password], function(err, rows, fields){
             if(!err){
                 /*if(rows.length != 0){

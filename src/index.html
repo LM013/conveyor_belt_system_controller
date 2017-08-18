@@ -14,89 +14,88 @@
 </head>
 
 <body>
-	<!-- LOG IN -->
-	<div id="login_div" align="center">
-		<header>
-			<img src="public/images/icon1.png" height="120px" width="120px" alt="conveyor_logo" style="opacity:1;">
-		</header>
-	
-		<div class="login_container">
-			<div class="row">
-			    <form class="col s12" id="loginForm">
-			      <div class="row">
-			        <div class="input-field col s11">
-			          <i class="material-icons prefix">account_circle</i>
-			          <input id="username" type="text" class="validate">
-			          <label for="username">Username</label>
-			        </div>
-			      </div> 
+	<div id="card" class="form_part">
+		<!-- LOG IN -->
+		<div id="login_div" align="center">
+			<header>
+				<img src="public/images/icon1.png" height="120px" width="120px" alt="conveyor_logo" style="opacity:1;">
+			</header>
+		
+			<div class="login_container">
+				<form class="col s12" id="loginForm">
+				    <div class="row">
+				        <div class="input-field col s11">
+				          <i class="material-icons prefix">account_circle</i>
+				          <input id="username" type="text" class="validate">
+				          <label for="username">Username</label>
+				        </div>
+				    </div> 
 
-			      <div class="row">
-			        <div class="input-field col s11">
-			          <i class="material-icons prefix">lock</i>
-			          <input id="password" type="password" class="validate">
-			          <label for="password">Password</label>
-			        </div>
-			      </div> 
-			      <div class="row">
-			        <div class="input-field col s12">
-			          <input value="LOGIN" type="submit" class="btn waves-effect waves-light validate red lighten-1">
-			         </div>
-			      </div> 
-  			    </form>
-  			     
-			</div>      
+			      	<div class="row">
+			        	<div class="input-field col s11">
+				          <i class="material-icons prefix">lock</i>
+				          <input id="password" type="password" class="validate">
+				          <label for="password">Password</label>
+				        </div>
+			      	</div> 
+			      	<div class="row">
+			        	<div class="input-field col s12">
+				          <input value="LOGIN" type="submit" class="btn waves-effect waves-light validate red lighten-1">
+				        </div>
+			      	</div> 
+  			    </form>   
+			</div>
+
+
+			<footer id="login_footer">
+				NO ACCOUNT YET? <u> SIGN UP </u>
+			</footer>
 		</div>
 
-		<footer id="login_footer">
-			NO ACCOUNT YET? <u> SIGN UP </u>
-		</footer>
-	</div>
+		<!-- SIGN UP -->
+		<div id="signup_div" align="center">
+			<header>
+				<img src="public/images/icon1.png" height="120px" width="120px" alt="conveyor_logo">
+			</header>
+		
+			<div id="signup_container">
+				<div class="row">
+				    <form class="col s12" id="signupForm">
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input id="first_name" type="text" class="validate">
+				          <label for="first_name">First Name</label>
+				        </div>
+				        <div class="input-field col s12">
+				          <input id="last_name" type="text" class="validate">
+				          <label for="last_name">Last Name</label>
+				        </div>
+				      </div>
+				     <div class="row">
+				        <div class="input-field col s6">
+				          <i class="material-icons prefix">face</i>
+				          <input id="new_username" type="text" class="validate">
+				          <label for="new_username">Username</label>
+				        </div>
+				        <div class="input-field col s6">
+				          <i class="material-icons prefix">lock_outline</i>
+				          <input id="new_password" type="password" class="validate">
+				          <label for="new_password">Password</label>
+				        </div>
+				     </div>
+				     <div class="row">
+				     	<div class="input-field col s12">
+				     		<input class="red btn waves-effect waves-light validate" type="submit" value="SIGN UP"/>
+				     	</div>
+				     </div>
+				    </form>
+				  </div>	 
+	  		</div>
 
-	<!-- SIGN UP -->
-	<div id="signup_div" align="center">
-		<header>
-			<img src="public/images/icon1.png" height="120px" width="120px" alt="conveyor_logo">
-		</header>
-	
-		<div id="signup_container">
-			<div class="row">
-			    <form class="col s12" id="signupForm">
-			      <div class="row">
-			        <div class="input-field col s12">
-			          <input id="first_name" type="text" class="validate">
-			          <label for="first_name">First Name</label>
-			        </div>
-			        <div class="input-field col s12">
-			          <input id="last_name" type="text" class="validate">
-			          <label for="last_name">Last Name</label>
-			        </div>
-			      </div>
-			     <div class="row">
-			        <div class="input-field col s6">
-			          <i class="material-icons prefix">face</i>
-			          <input id="new_username" type="text" class="validate">
-			          <label for="new_username">Username</label>
-			        </div>
-			        <div class="input-field col s6">
-			          <i class="material-icons prefix">lock_outline</i>
-			          <input id="new_password" type="password" class="validate">
-			          <label for="new_password">Password</label>
-			        </div>
-			     </div>
-			      <div class="row">
-			        <div class="input-field col s12">
-			          <input value="SIGN UP" type="submit" class="btn waves-effect waves-light validate red lighten-1">
-			         </div>
-			      </div> 
-			    </form>
-			  </div>	 
-  		</div>
-
-  		<footer id="signup_footer">
-  			ALREADY HAVE AN ACCOUNT? <u> LOG IN </u>
-  		</footer>	
-	</div>
+			<footer id="signup_footer">
+	  			ALREADY HAVE AN ACCOUNT? <u> LOG IN </u>
+	  		</footer>	
+		</div>
 
   <!-- Javascripts -->
   <script src="materialize-css/js/materialize.min.js"></script>

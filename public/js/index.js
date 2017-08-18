@@ -10,16 +10,14 @@ $(document).ready(function(){
 	$("#login_footer").on({
 		"click": function(){
 			$("#login_div").hide();
-			$("#signup_div").toggle("slide");
-			Materialize.toast('SIGN UP KA', 4000)
+			$("#signup_div").show();
 		}	
 	});
 
 	$("#signup_footer").on({
 		"click": function(){
 			$("#signup_div").hide();
-			$("#login_div").toggle("slide");
-			Materialize.toast('LOG IN KA', 4000)
+			$("#login_div").show();
 		}	
 	});
 
