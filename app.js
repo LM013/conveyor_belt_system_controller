@@ -4,10 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var index = require('./routes/index');
-var users = require('./routes/users');
-
+var account = require('./routes/account');
 var app = express();
 
 // view engine setup
@@ -22,9 +20,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/materialize-css', express.static(path.join(__dirname, 'node_modules/materialize-css/dist')));
-app.use('/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
-
+app.use('/materialize', express.static(path.join(__dirname, 'node_modules/materialize/dist')));
+app.use('/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')))
+app.use('/api/account', account);	
 app.use('/', index);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
