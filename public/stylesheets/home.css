@@ -21,3 +21,29 @@ i.icon-white{
 	width: 320px;
 	text-align: center;
 }
+
+#controls{
+	width: 200px; 
+	border-radius: 20px;
+	padding-top: 10px; 
+	margin-left: 20px;
+	float: left;
+}
+
+.holder{
+	height: 250px;
+	padding-left: 30px;
+	padding-top: 10px;	
+	margin-left: 250px;
+	margin-right: auto;
+	margin-top: 25px;
+}
+
+.gears{
+	height: 100px; 
+	width: 100px;
+}
+
+.connect_btn:hover{
+	opacity: 0.7;
+}
