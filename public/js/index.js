@@ -1,30 +1,36 @@
 $(document).ready(function(){
-	$("#signup_div").hide();
+	$('#signup_div').hide();
+	$('#login_div').hide();
+
+	$('#loginL').on({
+		'click': function(){
+			$('#landing').hide();
+			$('#login_div').show();
+		 }
+	});
 
 	//CLEAR FORMS
-	$("#loginForm").trigger("reset");
-	$("#signupForm").trigger("reset");
+	$('#loginForm').trigger('reset');
+	$('#signupForm').trigger('reset');
 
-	//
-	$("#login_footer").on({
-		"click": function(){
-			$("#login_div").hide();
-			$("#signup_div").show();
+	//SWITCH BETWEEN SIGN UP AND LOGIN FORMS
+	$('#login_footer').on({
+		'click': function(){
+			$('#login_div').hide();
+			$('#signup_div').show();
 		}	
 	});
 
-	$("#signup_footer").on({
-		"click": function(){
-			$("#signup_div").hide();
-			$("#login_div").show();
+	$('#signup_footer').on({
+		'click': function(){
+			$('#signup_div').hide();
+			$('#login_div').show();
 		}	
 	});
 
 	$('#username').val('');
 	$('#password').val('');
 });
-
-//$("#signuptbtn").click(signUp);
 
 $('#loginForm').on('submit', function(e){
 	e.preventDefault();
