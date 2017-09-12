@@ -16,7 +16,7 @@
 <body>
 	<header>
 		<div id="homeButton">
-			<a class="btn-floating btn-large waves-effect waves-light">
+			<a class="btn-floating btn-large waves-effect waves-light" href="/">
 			<i class="material-icons prefix icon-white" style="font-size: 45px" id="home">home</i>	
 			</a>
 		</div>
@@ -25,17 +25,38 @@
 			<span> SUP, DIMSUM! </span>
 		</div>
 
-		<div id="logoutButton" style="font-size: 15px;">
-			<span> SIGN OUT </span>
+		<div id="signout" style="font-size: 15px;">
+			<a class='dropdown-button btn waves-effect icon-teal' href='#' data-activates='dropdown1'>
+        <i class="material-icons">settings</i>   
+      </a>
+
+      <!-- Dropdown Structure -->
+      <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="#!">Change Password</a></li>
+        <li class="divider"></li>
+        <li><a href="/">Sign Out</a></li>
+      </ul>
 		</div>	
 	</header>
 
   <div id="operations_div">
-    <header id="title"> Operations </header>
+    <header id="title"> OPERATIONS </header>
+    
     <div id="button_holder">
-    <a class="waves-effect waves-light btn-large blue-grey darken-1" style="overflow-wrap: break-word;"><i class="material-icons right">cloud</i>CONTINUOUS RUN</a>
-    <a class="waves-effect waves-light btn-large blue-grey darken-1" style="white-space: normal; margin-left: 30px;"><i class="material-icons right">cloud</i>JOGGING</a>
+      <div id="button_1_div">
+          <img src="public/images/jog.png" style="height:400px; width:400px;"/>
+          <a href=""/>
+      </div>
+      <div id="button_2_div">  
+          <a href="continuous_run">
+          <img src="public/images/run.png" style="height:400px; width:400px"/>
+          </a>
+      </div>  
     </div>
   </div>
+  <!-- Javascripts -->
+  <script src="materialize-css/js/materialize.min.js"></script>
+  <script src="jquery/jquery.min.js" type="text/javascript"></script>
+  <script src="public/js/operation.js"></script>
 </body>
 </html>

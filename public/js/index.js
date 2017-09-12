@@ -1,6 +1,5 @@
 $(document).ready(function(){
-	console.log("hallo");
-	$("#signup_div").hide();
+	$("#login_div").hide();
 
 	//CLEAR FORMS
 	$("#loginForm").trigger("reset");
@@ -9,6 +8,7 @@ $(document).ready(function(){
 	//
 	$("#login_footer").on({
 		"click": function(){
+			$("#index_div").hide();
 			$("#login_div").hide();
 			$("#signup_div").show();
 		}	
@@ -16,6 +16,7 @@ $(document).ready(function(){
 
 	$("#signup_footer").on({
 		"click": function(){
+			$("#index_div").hide();
 			$("#signup_div").hide();
 			$("#login_div").show();
 		}	
@@ -57,6 +58,7 @@ $('#loginForm').on('submit', function(e){
 	            window.location.href="/home";
 	        } else {
 	            Materialize.toast(message, 4000, 'red');
+	            $("#password").val("");
 			}
 		});
 	} else {
@@ -92,6 +94,7 @@ $('#signupForm').on('submit', function(e){
 	        	window.location.href="/home";
 	        } else {
 	            Materialize.toast(message, 4000, 'red');
+	            $("#password").val("");
 			}
 		});
 	} else {
