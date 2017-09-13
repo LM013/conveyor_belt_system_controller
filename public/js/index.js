@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$("#login_div").hide();
+	$("#signup_div").hide();
 
 	//CLEAR FORMS
 	$("#loginForm").trigger("reset");
@@ -8,7 +8,6 @@ $(document).ready(function(){
 	//
 	$("#login_footer").on({
 		"click": function(){
-			$("#index_div").hide();
 			$("#login_div").hide();
 			$("#signup_div").show();
 		}	
@@ -16,7 +15,6 @@ $(document).ready(function(){
 
 	$("#signup_footer").on({
 		"click": function(){
-			$("#index_div").hide();
 			$("#signup_div").hide();
 			$("#login_div").show();
 		}	
