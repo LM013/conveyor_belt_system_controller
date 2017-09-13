@@ -6,29 +6,113 @@ body {
   background-size: cover;
 }
 
+
+
+header{
+	background-color: #00868B;	
+	height: 70px;
+	color: #ffffff;
+	padding-left: 11px;
+	padding-right: 11px;
+	padding-top: 8px;
+	font-size: 20px;
+}
+
+#operations_div{
+	height: 120px;
+}
+
+#title{
+	font-size: 35px;
+	text-align: center;
+	padding-top: 10px;
+	border-radius: 15px;
+	background-color: #00868B;
+	border-radius: 20px;
+}
+
+#controlPanel{
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 0px;
+	height: 400px;
+	width: 600px;
+	border-radius: 20px;
+}
+
+#ops{
+	height: 200px;
+	width: 600px;
+	margin-top: 0px;
+	padding-top: 25px;
+	padding-left: 25px;
+	border-radius: 5px;
+}
+
+
+#belt_holder{
+	height: 100px;
+	width: 600px;
+	padding-top: 20px;
+}
+
+#belt{
+	height: 100px;
+	width: 600px;
+	border-radius: 10px;
+	padding-top: 13px; 
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 20px;
+}
+
+.buttons{
+	height: 150px;
+	width: 150px;
+	float: left;
+	border: solid 3px black;
+	margin-left: 25px;
+	text-align: center;
+	padding-top: 50px;
+}
+
+.buttons:hover{
+	opacity: 0.7;
+	height: 160px;
+	width: 160px;
+	padding-top: 60px;
+}
+
+.highlight{
+	height: 50px;
+	background-color: white;
+	padding-top: 13px;
+}
+
+.belt_buttons{
+	height: 70px;
+	width: 70px;
+	float: left;
+	border: solid 3px black;
+	text-align: center;
+	padding-top: 20px;
+	margin-left: 20px;
+	border-radius: 100px;
+	color: white;
+	background-color: black;
+}
+
+.belt_buttons:hover{
+	opacity: 0.7;
+	height: 75px;
+	width: 75px;
+	padding-top: 25px;
+}
+
 i.icon-white{
 	color: #ffffff;
 }
 
-#controlPanel{
-	background-color: grey;
-	padding-top: 80px;
-	padding-left: 70px;
-	height: 600px;
-	width: 700px;
-}
-
 .btn-white{
 	color: black;
-}
-
-#controlPanel .btn-large{
-	margin-right: 50px;
-	margin-top: 50px;
-}
-
-#controlPanel .btn-flat{
-	margin-right: 0px;
-	margin-left: 0px;
-	margin-top: 50px;
 }
