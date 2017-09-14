@@ -9,6 +9,13 @@ $(document).ready(function(){
 		 }
 	});
 
+	$('#signupL').on({
+		'click': function(){
+			$('#landing').hide();
+			$('#signup_div').show();
+		 }
+	});
+
 	//CLEAR FORMS
 	$('#loginForm').trigger('reset');
 	$('#signupForm').trigger('reset');

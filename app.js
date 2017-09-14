@@ -6,7 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var account = require('./routes/account');
+var session = require('client-sessions');
 var app = express();
+var mysql = require('mysql');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'src'));
@@ -14,6 +16,16 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(session({
+	cookieName: 'session',
+	secret: 'R4nd0m 5tr1ng6s',
+	duration: 30*60*1000,
+	activeDuration: 5*60*1000,
+	httpOnly: true,
+	secure: true,
+	ephemeral: true
+}));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,8 +37,6 @@ app.use('/materialize', express.static(path.join(__dirname, 'node_modules/materi
 app.use('/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')))
 app.use('/api/account', account);	
 app.use('/', index);
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
