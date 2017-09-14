@@ -6,8 +6,6 @@ body {
   background-size: cover;
 }
 
-
-
 header{
 	background-color: #00868B;	
 	height: 70px;
@@ -17,6 +15,16 @@ header{
 	padding-top: 8px;
 	font-size: 20px;
 }
+
+#signout{
+	float: right;
+	width: 400px;
+	text-align: right;
+	padding-top: 11px;	
+	padding-right: 11px;
+	background-color: #00868B;
+}
+
 
 #operations_div{
 	height: 120px;
