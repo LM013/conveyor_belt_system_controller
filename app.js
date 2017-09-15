@@ -6,7 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var account = require('./routes/account');
+var session = require('client-sessions');
 var app = express();
+var mysql = require('mysql');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'src'));
@@ -14,18 +16,26 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(session({
+	cookieName: 'session',
+	secret: 'R4nd0m 5tr1ng6s',
+	duration: 30*60*1000,
+	activeDuration: 5*60*1000,
+	httpOnly: true,
+	secure: true,
+	ephemeral: true
+}));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use('/justflipit', express.static(path.join(__dirname, 'node_modules/justflipit/src')));
 app.use('/materialize-css', express.static(path.join(__dirname, 'node_modules/materialize-css/dist')));
 app.use('/materialize', express.static(path.join(__dirname, 'node_modules/materialize/dist')));
 app.use('/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')))
-app.use('/api/account', account);	
+app.use('/api/account', account);
 app.use('/', index);
-
 
 
 // catch 404 and forward to error handler
