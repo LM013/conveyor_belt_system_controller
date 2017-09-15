@@ -1,3 +1,9 @@
+@media screen and (max-width: 768px) {
+	body{
+		background-color: black;
+	}
+}
+
 body { 
   background: url("../images/mcl.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -8,6 +14,16 @@ body {
 
 header{
 	padding: 10px;
+}
+
+@viewport{
+	zoom: 10.0;
+	width: extend-to-zoom;
+}
+
+@ms-viewport{
+	width: extend-to-zoom;
+	zoom: 5.0;
 }
 
 #th{

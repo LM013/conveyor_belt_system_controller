@@ -22,4 +22,8 @@ router.get('/jogging', function(req, res, next){
 	res.sendFile('jogging.html', { root: __dirname + '/../src/'} );
 })
 
+router.get('/change_password', function(req, res, next){
+	res.sendFile('change_password.html', { root: __dirname + '/../src/'} );
+})
+
 module.exports = router;
