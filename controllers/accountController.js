@@ -39,10 +39,22 @@ module.exports= {
     },
 
     whoami: function(req,res){
-        console.log("waddup homie");
-        var username = req.session.user.username;
-        console.log(username);
-        return res.json(username);
+        var queryString = "SELECT * FROM Accounts where id=?"; 
+        connection.query(queryString, [req.session.user.id], function(err, rows,  fields){
+            if(!err){
+                if(rows.length == 0){
+                    res.status(404).send({status: 'Username not found'});
+                } else {
+                    var user = rows[0];
+                    res.writeHead(200, { 'Content-Type': 'application/json'});
+                    res.end(JSON.stringify(user));
+                    res.end();
+                }
+            } else {
+                console.log(err);
+                res.status(500).send({status: 'error'});
+            }
+        });
     },
 
     signup: function(req, res){

@@ -31,12 +31,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use('/justflipit', express.static(path.join(__dirname, 'node_modules/justflipit/src')));
 app.use('/materialize-css', express.static(path.join(__dirname, 'node_modules/materialize-css/dist')));
 app.use('/materialize', express.static(path.join(__dirname, 'node_modules/materialize/dist')));
 app.use('/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')))
-app.use('/api/account', account);	
+app.use('/api/account', account);
 app.use('/', index);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

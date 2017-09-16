@@ -14,30 +14,9 @@
 </head>
 
 <body>
-	<header>
-    <div id="homeButton">
-      <a class="btn-floating btn-large waves-effect waves-light" href="operation">
-      <i class="material-icons prefix icon-white" style="font-size: 45px" id="home">home</i>  
-      </a>
-    </div>
-
-    <div id="userHeader" style="font-size: 18px;">
-      <span> Hello, Jane Doe </span>
-    </div>
-    <div id="signout" style="font-size: 15px;">
-      <a class='dropdown-button btn waves-effect icon-teal' href='#' data-activates='dropdown1'>
-            <i class="material-icons">settings</i>   
-        </a>
-          <!-- Dropdown Structure -->
-          <ul id='dropdown1' class='dropdown-content'>
-            <li><a href="#!">Change Password</a></li>
-            <li class="divider"></li>
-            <li><a href="/logout">Sign Out</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">Close</a></li>
-          </ul>
-    </div>  
+	<header id="mainHeader">
   </header>
+  <script type="text/javascript"> $('#mainHeader').load('/header') </script>
 
   <div id="title_holder">
     <header id="title"> CONTINUOUS RUN </header>

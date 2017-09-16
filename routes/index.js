@@ -14,6 +14,10 @@ router.get('/', function(req, res, next) {
 	res.sendFile('index.html', { root: __dirname + '/../src/'} );
 });
 
+router.get('/header', function(req, res, next) {
+	res.sendFile('header.html', { root: __dirname + '/../src/'} );
+});
+
 router.get('/logout', restrict, function(req, res, next){
 	req.session.reset();
 	res.redirect('/');

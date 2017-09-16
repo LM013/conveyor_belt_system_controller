@@ -1,12 +1,13 @@
 var controllers = ["", ];
-for(var i = 1 ; i <= 6; i++){
+var n = prompt("Please enter number of controllers(1-6)", "");
+for(var i = 1 ; i <= n; i++){
   var c = {};
   c.ip = '8.8.8.'+i;
   controllers.push(c);
 }
 
 $(document).ready(function(){
-  for(var i = 1; i <= 6; i++){
+  for(var i = 1; i <= n; i++){
     $('#holder').append(
       $('<div>')
         .attr('class', 'card-panel blue-grey darken-1')
@@ -32,7 +33,6 @@ $(document).ready(function(){
 });
 
 function connect(){
-  alert(controllers[this.id].ip);
   window.location.href="/operation";
 }
 

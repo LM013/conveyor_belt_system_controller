@@ -7,9 +7,8 @@
 
   <!-- Stylesheets -->
   <link rel="shortcut icon" href="public/images/favicon.ico" type="image/x-icon">
-  <!--]<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="public/stylesheets/home.css"/>
-  <link rel="stylesheet" href="public/stylesheets/operation.css"/>
   <link rel="stylesheet" href="materialize-css/css/materialize.min.css">
 
   <!-- Javascripts -->
@@ -19,32 +18,9 @@
 </head>
 
 <body>
-  <header>
-    <div id="homeButton">
-      <a class="btn-floating btn-large waves-effect waves-light" href="home">
-      <i class="material-icons prefix icon-white" style="font-size: 45px" id="home">home</i>  
-      </a>
-    </div>
-
-    <div id="userHeader" style="font-size: 18px;">
-      <span id="user"></span>
-    </div>
-    <script type="text/javascript" src="public/js/header.js"></script>
-
-    <div id="signout" style="font-size: 15px;">
-      <a class='dropdown-button btn waves-effect icon-teal' href='#' data-activates='dropdown1'>
-            <i class="material-icons">settings</i>   
-        </a>
-          <!-- Dropdown Structure -->
-          <ul id='dropdown1' class='dropdown-content'>
-            <li><a href="#!">Change Password</a></li>
-            <li class="divider"></li>
-            <li><a href="/logout">Sign Out</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">Close</a></li>
-          </ul>
-    </div>  
+  <header id="mainHeader">
   </header>
+  <script type="text/javascript"> $('#mainHeader').load('/header') </script>
   <div id="cardHolder" class="row">
         <div id="holder">
         </div>        
