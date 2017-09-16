@@ -1,5 +1,5 @@
 var controllers = ["", ];
-var n = prompt("Please enter number of controllers(1-6)", "");
+var n = 6;//prompt("Please enter number of controllers(1-6)", "");
 for(var i = 1 ; i <= n; i++){
   var c = {};
   c.ip = '8.8.8.'+i;
@@ -33,7 +33,21 @@ $(document).ready(function(){
 });
 
 function connect(){
-  window.location.href="/operation";
+  var ip = controllers[this.id].ip;
+  $.get('/select?ip='+ip, {
+    method: 'GET',
+      credentials: 'include',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Accept':'application/json'
+      }
+  })
+  .then((res) => {
+    if(res.status == '200')
+      window.location.href='operation';
+    else
+      Materialize.toast("Error  ", 3000, 'red lighten-1');
+  });
 }
 
 

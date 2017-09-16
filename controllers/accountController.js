@@ -23,9 +23,8 @@ module.exports= {
                     var user = rows[0];
                     if(user.password != md5(sha1(req.body.password))){
                         res.status(403).send({status: 'incorrect password'});
-                    } else {    
-                        req.user = user;
-                        delete req.user.password; // delete the password from the session
+                    } else { 
+                        delete user.password; // delete the password from the session
                         req.session.user = user;  //refresh the session value
                         console.log(req.session);
                         res.status(200).send({status:"logged in"});
@@ -36,6 +35,11 @@ module.exports= {
                 res.status(500).send({status: 'error'});
             }
         });
+    },
+
+    logout: function(req, res){
+        req.session.reset();
+        res.redirect('/');
     },
 
     whoami: function(req,res){

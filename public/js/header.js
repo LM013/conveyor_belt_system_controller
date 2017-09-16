@@ -7,7 +7,6 @@ $.get('/api/account/whoami', {
     }
 })
 .then((res) => {
-	console.log(res);
 	var username = res.firstName + '  ' + res.lastName;
 	$('#user').text('Hello, '+ username);
 });
