@@ -7,24 +7,30 @@
 
   <!-- Stylesheets -->
   <link rel="shortcut icon" href="public/images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!--]<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
   <link rel="stylesheet" href="public/stylesheets/home.css"/>
   <link rel="stylesheet" href="public/stylesheets/operation.css"/>
   <link rel="stylesheet" href="materialize-css/css/materialize.min.css">
+
+  <!-- Javascripts -->
   <script type="text/javascript" src="jquery/jquery.min.js"></script>
+  <script src="materialize-css/js/materialize.min.js"></script>
+  <script type="text/javascript" src="public/js/home.js"></script>
 </head>
 
 <body>
   <header>
     <div id="homeButton">
-      <a class="btn-floating btn-large waves-effect waves-light" href="operation">
+      <a class="btn-floating btn-large waves-effect waves-light" href="home">
       <i class="material-icons prefix icon-white" style="font-size: 45px" id="home">home</i>  
       </a>
     </div>
 
     <div id="userHeader" style="font-size: 18px;">
-      <span> Hello, Jane Doe </span>
+      <span id="user"></span>
     </div>
+    <script type="text/javascript" src="public/js/header.js"></script>
+
     <div id="signout" style="font-size: 15px;">
       <a class='dropdown-button btn waves-effect icon-teal' href='#' data-activates='dropdown1'>
             <i class="material-icons">settings</i>   
@@ -39,59 +45,9 @@
           </ul>
     </div>  
   </header>
-  <div id="cardHolder" class="row" style="padding:0;">
-        <div class="holder">
-          <div class="card-panel blue-grey darken-1" id="controls">
-              <img src="public/images/gear_1.png" class="gears">
-              <br>
-              <span> IP: 8.8.8.8 </span>
-              <br>
-              <button class=" btn connect_btn"> CONNECT </button>
-          </div>
-          <div class="card-panel blue-grey darken-1" id="controls">
-              <img src="public/images/gear_2.png" class="gears">
-              <br>
-              <span> IP: 8.8.8.8 </span>
-              <br>
-              <button class=" btn connect_btn"> CONNECT </button>
-          </div>
-          <div class="card-panel blue-grey darken-1" id="controls">
-              <img src="public/images/gear_3.png" class="gears">
-              <br>
-              <span> IP: 8.8.8.8 </span>
-              <br>
-              <button class="btn connect_btn"> CONNECT </button>
-          </div>
-        </div>  
-
-        <div class="holder" style="margin-top: 1px;">
-          <div class="card-panel blue-grey darken-1" id="controls">
-              <img src="public/images/gear_4.png" class="gears">
-              <br>
-              <span> IP: 8.8.8.8 </span>
-              <br>
-              <button class="btn connect_btn"> CONNECT </button>
-          </div>
-          <div class="card-panel blue-grey darken-1" id="controls">
-              <img src="public/images/gear_5.png" class="gears">
-              <br>
-              <span> IP: 8.8.8.8 </span>
-              <br>
-              <button class="btn connect_btn"> CONNECT </button>
-          </div>
-          <div class="card-panel blue-grey darken-1" id="controls">
-              <img src="public/images/gear_6.png" class="gears"">
-              <br>
-              <span> IP: 8.8.8.8 </span>
-              <br>"
-              <button class="btn connect_btn"> CONNECT </button>
-          </div>
-        </div>  
-        
+  <div id="cardHolder" class="row">
+        <div id="holder">
+        </div>        
   </div>
-  <!-- Javascripts -->
-  
-  <!--<script src="public/js/home.js" type="text/javascript"></script>-->
-  <script src="materialize-css/js/materialize.min.js"></script>
 </body>
 </html>

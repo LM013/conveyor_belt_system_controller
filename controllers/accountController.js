@@ -23,13 +23,12 @@ module.exports= {
                     var user = rows[0];
                     if(user.password != md5(sha1(req.body.password))){
                         res.status(403).send({status: 'incorrect password'});
-                    } else {
+                    } else {    
                         req.user = user;
                         delete req.user.password; // delete the password from the session
                         req.session.user = user;  //refresh the session value
-                        res.locals.user = user;
-                        console.log(req.session.user.username);
-                        res.status(200).send("logged in");
+                        console.log(req.session);
+                        res.status(200).send({status:"logged in"});
                     }
                 }
             } else {
@@ -39,13 +38,11 @@ module.exports= {
         });
     },
 
-    logout: function(req, res){
-        if (req.session.key) {
-            req.session.destroy();
-            res.status(200).send({status:'logged out'});
-        } else {
-            res.status(404).send({status: 'not good'});
-        }
+    whoami: function(req,res){
+        console.log("waddup homie");
+        var username = req.session.user.username;
+        console.log(username);
+        return res.json(username);
     },
 
     signup: function(req, res){
@@ -61,6 +58,10 @@ module.exports= {
                     res.status(500).send({status: 'error'});
                 }
             }
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).send({status: 'error'});
         });
     }
 }

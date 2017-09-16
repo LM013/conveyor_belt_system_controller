@@ -18,13 +18,14 @@ body {
 }
 
 .card-panel{
-	background-color: lightgrey;
 	height: 200px;
 	width: 320px;
 	text-align: center;
+	padding-top: 10px;
 }
 
 #controls{
+	background-color: pink;
 	width: 200px; 
 	border-radius: 20px;
 	padding-top: 10px; 
@@ -32,8 +33,9 @@ body {
 	float: left;
 }
 
-.holder{
+#holder{
 	height: 250px;
+	width: 750px;
 	padding-left: 30px;
 	padding-top: 10px;	
 	margin-left: 250px;

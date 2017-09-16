@@ -11,8 +11,6 @@ function restrict(req, res, next){
 }
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	if(req.session)
-		console.log("anek");
 	res.sendFile('index.html', { root: __dirname + '/../src/'} );
 });
 

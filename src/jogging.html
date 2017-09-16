@@ -8,16 +8,18 @@
   <!-- Stylesheets -->
   <link rel="shortcut icon" href="public/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="public/stylesheets/operation.css"/>
   <link rel="stylesheet" href="public/stylesheets/jogging.css"/>
   <link rel="stylesheet" href="materialize-css/css/materialize.min.css">
+
+  <!-- Javascripts -->
+  <script src="materialize-css/js/materialize.min.js"></script>
   <script type="text/javascript" src="jquery/jquery.min.js"></script>
 </head>
 
 <body>
 	<header>
     <div id="homeButton">
-      <a class="btn-floating btn-large waves-effect waves-light" href="operation">
+      <a class="btn-floating btn-large waves-effect waves-light" href="home">
       <i class="material-icons prefix icon-white" style="font-size: 45px" id="home">home</i>  
       </a>
     </div>
@@ -25,7 +27,6 @@
     <div id="userHeader" style="font-size: 18px;">
       <span> Hello, Jane Doe </span>
     </div>
-
     <div id="signout" style="font-size: 15px;">
       <a class='dropdown-button btn waves-effect icon-teal' href='#' data-activates='dropdown1'>
             <i class="material-icons">settings</i>   
@@ -34,12 +35,12 @@
           <ul id='dropdown1' class='dropdown-content'>
             <li><a href="#!">Change Password</a></li>
             <li class="divider"></li>
-            <li><a href="/">Sign Out</a></li>
+            <li><a href="/logout">Sign Out</a></li>
             <li class="divider"></li>
             <li><a href="#!">Close</a></li>
           </ul>
     </div>  
-	</header>
+  </header>
 
 	<div id="operations_div">
 		<header id="title"> JOGGING </header>
@@ -69,10 +70,6 @@
 		        <div id="pt_five" class="belt_buttons"> 3.0m </div>
 		    </div>    
       	</div>
-	</div>	
-	<!-- Javascripts -->
-  	<script src="materialize-css/js/materialize.min.js"></script>
-  	<script src="jquery/jquery.min.js" type="text/javascript"></script>
-  	<script src="public/js/continuous_run.js"></script>
+	</div>
 </body>
 </html>
