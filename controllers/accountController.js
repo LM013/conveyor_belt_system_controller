@@ -65,8 +65,16 @@ module.exports= {
         var queryString = "INSERT Accounts (firstName, lastName, username, password) values (?, ?, ?, MD5(SHA1(?)))"
         connection.query(queryString, [req.body.first_name, req.body.last_name, req.body.new_username, req.body.new_password], function(err, rows, fields){
             if(!err){
-                console.log(rows);
-                res.status(200).send("signed up");
+                var queryString = "SELECT * FROM Accounts where id=?";
+                connection.query(queryString, [rows.insertId], function(err, rows){
+                    if(!err){
+                        var user = rows[0]; 
+                        delete user.password; // delete the password from the session
+                        req.session.user = user;  //refresh the session value
+                        console.log(req.session);
+                        res.status(200).send({status:"logged in"});
+                    }
+                });
             } else {
                 if(err.code == 'ER_DUP_ENTRY'){
                     res.status(403).send({status: 'Username already exists'});
@@ -74,10 +82,6 @@ module.exports= {
                     res.status(500).send({status: 'error'});
                 }
             }
-        })
-        .catch(function(err){
-            console.log(err);
-            res.status(500).send({status: 'error'});
         });
     }
 }
