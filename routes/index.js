@@ -39,6 +39,10 @@ router.get('/jogging', restrict, function(req, res, next){
 	res.sendFile('jogging.html', { root: __dirname + '/../src/'} );
 })
 
+router.get('/change_password', function(req, res, next){
+	res.sendFile('change_password.html', { root: __dirname + '/../src/'} );
+})
+
 router.get('/connect',restrict, function(req, res, next){
 	req.session.user.controller = req.query.ip;
 	res.status(200).send({status: '200'});
