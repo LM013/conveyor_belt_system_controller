@@ -44,7 +44,18 @@ img{
 	border: 0px;
 }
 
-#button_1_div:hover, #button_2_div:hover{
+#disconnect_btn{
+	margin-left: 40%;
+}
+
+#button_1_div:hover, #button_2_div:hover, #disconnect_btn:hover{
 	opacity: 0.7;	
+}
+
+#disconnect{
+	height:70px; 
+	width:150px; 
+	font-weight: bold; 
+	font-size: 15px;
 }
 

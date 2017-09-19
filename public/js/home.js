@@ -1,9 +1,9 @@
-var controllers = ["", ];
+var con = ["", ];
 var n = 6;//prompt("Please enter number of controllers(1-6)", "");
 for(var i = 1 ; i <= n; i++){
   var c = {};
   c.ip = '8.8.8.'+i;
-  controllers.push(c);
+  con.push(c);
 }
 
 $(document).ready(function(){
@@ -33,8 +33,8 @@ $(document).ready(function(){
 });
 
 function connect(){
-  var ip = controllers[this.id].ip;
-  $.get('/select?ip='+ip, {
+  var ip = con[this.id].ip;
+  $.get('/connect?ip='+ip, {
     method: 'GET',
       credentials: 'include',
       headers: {

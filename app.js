@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var account = require('./routes/account');
 var session = require('client-sessions');
-var app = express();
 var mysql = require('mysql');
+var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'src'));
@@ -33,7 +34,8 @@ app.use(cookieParser());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/materialize-css', express.static(path.join(__dirname, 'node_modules/materialize-css/dist')));
 app.use('/materialize', express.static(path.join(__dirname, 'node_modules/materialize/dist')));
-app.use('/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')))
+app.use('/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
+app.use('/icons', express.static(path.join(__dirname, 'public/icons/iconfont')));
 app.use('/api/account', account);
 app.use('/', index);
 

@@ -22,4 +22,10 @@ $(document).ready(function(){
       stopPropagation: false // Stops event propagation
     }
   );*/
+
+  $('#disconnect').on('click', disconnect);
 });
+
+function disconnect(){
+	window.location.href = '/disconnect';
+}
