@@ -27,5 +27,11 @@ $(document).ready(function(){
 });
 
 function disconnect(){
-	window.location.href = '/disconnect';
+	$.post('/deselect', function(res){
+    if(res.status == 400){
+      Materialize.toast(res.message, 3000, 'red lighten-1');  
+    } else {
+      window.location.href='/home';
+    }
+  });
 }

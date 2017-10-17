@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var socket = require('socket.io-client')('http://localhost:3000');
 
 //restrict access to pages that requires log in
 function restrict(req, res, next){
-	console.log(req.session.user);
+	console.log(req.session);
 	if (req.session.user) {
     	next();
   	} else {
@@ -27,8 +28,12 @@ router.get('/home', restrict, function(req, res, next){
 });
 
 router.get('/operation', restrict, function(req, res, next){
-	console.log(req.session);
-	res.sendFile('operation.html', { root: __dirname + '/../src/'});
+	if(req.session.user.controller)
+		res.sendFile('operation.html', { root: __dirname + '/../src/'});
+	else{
+		console.log('di pwede eh');
+		res.redirect('home');
+	}
 });
 
 router.get('/continuous_run', restrict, function(req, res, next){
@@ -39,18 +44,36 @@ router.get('/jogging', restrict, function(req, res, next){
 	res.sendFile('jogging.html', { root: __dirname + '/../src/'} );
 })
 
-router.get('/change_password', function(req, res, next){
+router.get('/change_password', restrict, function(req, res, next){
 	res.sendFile('change_password.html', { root: __dirname + '/../src/'} );
 })
 
-router.get('/connect',restrict, function(req, res, next){
-	req.session.user.controller = req.query.ip;
-	res.status(200).send({status: '200'});
+router.post('/select',restrict, function(req, res, next){
+	var body = {};
+	body.id = req.body.id;
+	body.username = req.session.user.username;
+	
+	socket.emit('select', body, function(result){
+		console.log(result);
+		if(result.status == 200)
+			req.session.user.controller = req.body.id;
+		res.status(result.status).json(result);
+	});
 });
 
-router.get('/disconnect', restrict, function(req,res, next){
-	delete req.session.user.controller;
-	res.redirect('/home');
+router.post('/deselect', restrict, function(req,res, next){
+	var body = {};
+	body.i = req.session.user.controller;
+	body.username = req.session.user.username;
+
+	console.log(body);
+	socket.emit('deselect', body, function(result){
+		console.log(result);
+		if(result.status == 200)
+			delete req.session.user.controller;
+		res.status(result.status).json(result);
+	});
+	
 });
 
 module.exports = router;
