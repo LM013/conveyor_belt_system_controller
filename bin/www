@@ -35,81 +35,70 @@ server.on('listening', onListening);
 */
 io = require("socket.io")(server);
 var connectedControllers = [];
-var taken = [];
 
 io.on('connection', function(socket) {
+  var index;
+
   socket.on('controller', function(){
     console.log('controller connected');
     connectedControllers.push(socket);
-    taken.push(false);
+    index = getIndex(socket);
+
     socket.emit('index', getIndex(socket));
   });
 
-  socket.on('selected', function(){
-    var i = getIndex(socket);
-    taken[i] = true;
-  });
-
-  socket.on('deselected', function(){
-    var i = getIndex(socket);
-    taken[i] = false;
-  });
-
-  socket.on('reply', function(i){
-    sendTime(i);
-  });
-
-  socket.on('getList', function(){
-    socket.emit('list', connectedControllers.length)
+  socket.on('length', function(fn){
+    fn(connectedControllers.length)
   });
 
   socket.on('select', function(data, fn){
     var i = data.id;
-    var result;
+    console.log(index);
 
-    console.log(data);
-    if(!taken[i]){
-      connectedControllers[i].emit('select', data);
-      result = {status:200, i:i, message:'successfully selected this controller'};
-    } else {
-      result = {status:400, i:null, message:'controller already connected to other user'};
-    }
-
-    fn(result);
+    try{
+      connectedControllers[i].emit('select', data, function(result){
+        fn(result);  
+      });
+    }catch(err){
+      console.log(err);
+    };
   })
 
   socket.on('deselect', function(data, fn){ 
     var i = data.i;
-    var result;
-
-    if(i != null && taken[i]){
-      connectedControllers[i].emit('deselect', data);
-      result = {status:200, i :null, message:'successfully deselected this controller'};
-    } else {
-      result = {status:400, message:'not connected to any controller'};
+    
+    try{
+      connectedControllers[i].emit('deselect', data, function(result){
+        fn(result);  
+      });
+    }catch(err){
+      console.log(err);
     }
-
-    fn(result);
   });
 
-  socket.on('message', function(data){
-    var i = data.id;
-    var message = data.message;
-    var interface = getInterface(socket);
-    if(i){
-      connectedControllers[i].emit('message', {message:message, interface:interface});
-      socket.emit('200', i);
-    } else {
-      socket.emit('400', 'not connected to any controller');
+  socket.on('control', function(data, fn){
+    var i = data.i;
+
+    try{
+      connectedControllers[i].emit(data.control,data, function(result){
+        fn(result);
+      });
+    }catch(err){
+      console.log(err);
     }
+  });
+
+  socket.on('disconnect', function(){
+    var i = getIndex(socket);
+    console.log('disconnected controller #' + i);
+    if(i == 0)
+      connectedControllers.shift();
+    else
+      connectedControllers = connectedControllers.splice(i, 1);
   });
 
 });
 
-function sendTime(i){
-  var interface = interfaces[i];
-  interface.emit('time');
-}
 
 function getIndex(controller){
   return connectedControllers.indexOf(controller);

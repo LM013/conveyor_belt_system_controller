@@ -1,27 +1,29 @@
 $(document).ready(function(){
-  for(var i = 1; i <= 1; i++){
-    $('#holder').append(
-      $('<div>')
-        .attr('class', 'card-panel blue-grey darken-1')
-        .attr('id', 'controls')
-        .append(
-          $('<img>')
-            .attr('src', 'public/images/gear_'+i+'.png')
-            .attr('class', 'gears')
-          ,
-          $('<br/>')
-          ,
-          $('<br/>')
-          ,
-          $('<button>')
-          .attr('id', i)
-          .attr('class','btn connect_btn')
-          .text('CONNECT')
-        )  
-    )     
-  }
-
-  $('.btn').on('click', connect);
+  $.get('/list', function(length){
+    if(length > 6) length = 6;
+    for(var i = 1; i <= length; i++){
+      $('#holder').append(
+        $('<div>')
+          .attr('class', 'card-panel blue-grey darken-1')
+          .attr('id', 'controls')
+          .append(
+            $('<img>')
+              .attr('src', 'public/images/gear_'+i+'.png')
+              .attr('class', 'gears')
+            ,
+            $('<br/>')
+            ,
+            $('<br/>')
+            ,
+            $('<button>')
+            .attr('id', i)
+            .attr('class','btn connect_btn')
+            .text('CONNECT')
+          )  
+      )     
+    }
+    $('.btn').on('click', connect);
+  });
 });
 
 function connect(){
