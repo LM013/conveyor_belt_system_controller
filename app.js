@@ -8,9 +8,8 @@ var index = require('./routes/index');
 var account = require('./routes/account');
 var session = require('client-sessions');
 var mysql = require('mysql');
+var io = require('socket.io');
 var app = express();
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'src'));
 app.set('view engine', 'jade');
@@ -59,3 +58,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+

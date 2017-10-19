@@ -1,14 +1,8 @@
-var con = ["", ];
-var n = 6;//prompt("Please enter number of controllers(1-6)", "");
-for(var i = 1 ; i <= n; i++){
-  var c = {};
-  c.ip = '8.8.8.'+i;
-  con.push(c);
-}
-
 $(document).ready(function(){
-  for(var i = 1; i <= n; i++){
-    $('#holder').append(
+  $.get('/list', function(length){
+    if(length > 6) length = 6;
+    for(var i = 1; i <= length; i++){     
+      $('#holder').append(
       $('<div>')
         .attr('class', 'card-panel blue-grey darken-1')
         .attr('id', 'controls')
@@ -68,29 +62,23 @@ $(document).ready(function(){
                 .text('Close')
             )
         )
-    )         
+    )
   }
+
   $('.modal').modal();
   $('.connect_btn').on('click', connect);
   $('.logs_btn').on('click', view_logs);
-  //$('.hide_btn').on('click', hide_logs);
+  });
 });
 
 function connect(){
-  var ip = con[this.id].ip;
-  $.get('/connect?ip='+ip, {
-    method: 'GET',
-      credentials: 'include',
-      headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Accept':'application/json'
-      }
-  })
-  .then((res) => {
-    if(res.status == '200')
-      window.location.href='operation';
-    else
-      Materialize.toast("Error  ", 3000, 'red lighten-1');
+  var data = 'id='+(this.id-1);
+  $.post('/select', data, function(res){
+    if(res.status == 400){
+      Materialize.toast(res.message, 3000, 'red lighten-1');  
+    } else {
+      window.location.href='/operation';
+    }
   });
 }
 

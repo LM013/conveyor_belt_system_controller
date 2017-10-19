@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('conveyor-belt-system-controller:server');
 var http = require('http');
 
+
 /**
  * Get port from environment and store in Express.
  */
@@ -30,9 +31,83 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 /**
+  *Socket IO
+*/
+io = require("socket.io")(server);
+var connectedControllers = [];
+
+io.on('connection', function(socket) {
+  var index;
+
+  socket.on('controller', function(){
+    console.log('controller connected');
+    connectedControllers.push(socket);
+    index = getIndex(socket);
+
+    socket.emit('index', getIndex(socket));
+  });
+
+  socket.on('length', function(fn){
+    fn(connectedControllers.length)
+  });
+
+  socket.on('select', function(data, fn){
+    var i = data.id;
+    console.log(index);
+
+    try{
+      connectedControllers[i].emit('select', data, function(result){
+        fn(result);  
+      });
+    }catch(err){
+      console.log(err);
+    };
+  })
+
+  socket.on('deselect', function(data, fn){ 
+    var i = data.i;
+    
+    try{
+      connectedControllers[i].emit('deselect', data, function(result){
+        fn(result);  
+      });
+    }catch(err){
+      console.log(err);
+    }
+  });
+
+  socket.on('control', function(data, fn){
+    var i = data.i;
+
+    try{
+      connectedControllers[i].emit(data.control,data, function(result){
+        fn(result);
+      });
+    }catch(err){
+      console.log(err);
+    }
+  });
+
+  socket.on('disconnect', function(){
+    var i = getIndex(socket);
+    console.log('disconnected controller #' + i);
+    if(i == 0)
+      connectedControllers.shift();
+    else
+      connectedControllers = connectedControllers.splice(i, 1);
+  });
+
+});
+
+
+function getIndex(controller){
+  return connectedControllers.indexOf(controller);
+}
+/* END OF SOCKET.IO CONFIG */
+
+/**
  * Normalize a port into a number, string, or false.
  */
-
 function normalizePort(val) {
   var port = parseInt(val, 10);
 
