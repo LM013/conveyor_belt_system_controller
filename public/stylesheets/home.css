@@ -4,22 +4,23 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  padding: 0;
+  margin: 0;
 }
 
 #cardHolder{
-	padding-left: 120px;
-	padding-top: 80px;
+	padding-left: 300px 118.8%;
+	padding-top: 10px;
 }
 
 .card-panel{
-	height: 200px;
+	height: 220px 23%;
 	width: 320px;
 	text-align: center;
 	padding-top: 10px;
 }
 
 #controls{
-	background-color: pink;
 	width: 200px; 
 	border-radius: 20px;
 	padding-top: 10px; 
@@ -28,13 +29,11 @@ body {
 }
 
 #holder{
-	height: 250px;
 	width: 750px;
 	padding-left: 30px;
 	padding-top: 10px;	
-	margin-left: 250px;
 	margin-right: auto;
-	margin-top: 25px;
+	margin: 0 auto;	
 }
 
 .gears{
@@ -42,7 +41,10 @@ body {
 	width: 100px;
 }
 
-.connect_btn:hover{
+.logs_btn{
+	margin-top: 10px;
+}
+.connect_btn:hover, .logs_btn:hover{
 	opacity: 0.7;
 }
 

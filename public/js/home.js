@@ -22,14 +22,58 @@ $(document).ready(function(){
           $('<br/>')
           ,
           $('<button>')
-          .attr('id', i)
-          .attr('class','btn connect_btn')
-          .text('CONNECT')
-        )  
-    )     
+            .attr('id', 'i')
+            .attr('class','btn connect_btn')
+            .text('CONNECT')
+          ,
+          $('<br/>')
+          ,
+          $('<button>')
+            .attr('id', 'i')
+            .attr('data-target', 'modal' + i)
+            .attr('class', 'btn logs_btn modal-trigger')
+            .text('VIEW LOGS')
+        ),
+      $('<div>')
+        .attr('id', 'modal' + i)
+        .attr('class', 'modal modal-fixed-footer')
+        .append(
+          $('<div>')
+            .attr('class', 'modal-content')
+            .append(
+              $('<h4>')
+                .text('Controller #' + i)
+              ,
+              $('<table>')
+                .append(
+                  $('<thead>')
+                    .append(
+                      $('<tr>')
+                        .append(
+                          $('<th>')
+                            .text('User'),
+                          $('<th>')
+                            .text('Operation'),
+                          $('<th>')
+                            .text('Time')   
+                        )
+                    )
+                )    
+            ),
+          $('<div>')
+            .attr('class', 'modal-footer')
+            .append(  
+              $('<button>')
+                .attr('class', 'btn hide_btn modal-close') 
+                .text('Close')
+            )
+        )
+    )         
   }
-
-  $('.btn').on('click', connect);
+  $('.modal').modal();
+  $('.connect_btn').on('click', connect);
+  $('.logs_btn').on('click', view_logs);
+  //$('.hide_btn').on('click', hide_logs);
 });
 
 function connect(){
@@ -50,4 +94,6 @@ function connect(){
   });
 }
 
-
+function view_logs(){
+  $('#modal'+i).modal('open');
+}

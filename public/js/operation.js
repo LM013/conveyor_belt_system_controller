@@ -23,9 +23,19 @@ $(document).ready(function(){
     }
   );*/
 
+  $('#jogging_btn').on('click', jogging);
   $('#disconnect').on('click', disconnect);
+  $('#run_btn').on('click', run);
 });
 
 function disconnect(){
 	window.location.href = '/disconnect';
+}
+
+function jogging(){
+	window.location.href= '/jogging';
+}
+
+function run(){
+	window.location.href= '/continuous_run';
 }

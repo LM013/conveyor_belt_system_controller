@@ -14,31 +14,37 @@
 </head>
 
 <body>
-	<header id="mainHeader">
-  </header>
+	<header id="mainHeader"></header>
   <script type="text/javascript"> $('#mainHeader').load('/header') </script>
 
-  <div id="operations_div">
-    <header id="title"> OPERATIONS </header>
-    
-    <div id="button_holder">
-      <div id="button_1_div">
-          <a href="jogging">
-          <img src="public/images/jog.png" style="height:400px; width:400px;"/>
-          </a>
-      </div>
-      <div id="button_2_div">  
-          <a href="continuous_run">
-          <img src="public/images/run.png" style="height:400px; width:400px"/>
-          </a>
-      </div>  
-    </div>
+  <div class="divider"></div>
 
-    <div id="disconnect_btn">
-        <button id="disconnect" class="btn connect_btn"> DISCONNECT </a>
-    </div>
+  <div class="container" style="height: 70px; background-color: teal; text-align: center; margin-top: 3%;  padding-top: 10px; font-size: 30px; color: white; border-radius: 20px;">
+     <div class="row">
+        <div class="col s12"> OPERATIONS </div>
+      </div>     
   </div>
 
+  <div class="container">
+    <div id="img_holder" class="row" style="margin-top:2%;">
+        <div class="col s6" style="text-align: center;">
+            <img src="public/images/jog2.png" id="jogging_btn" style="height:300px; width:300px;"/>
+          </a>
+        </div>
+        <div class="col s6" style="text-align: center;">
+          <a href="continuous_run">
+            <img src="public/images/run2.png" id="run_btn" style="height:300px; width:300px;"/>
+          </a>
+        </div>
+    </div>    
+  </div>
+
+  <div class="container">
+    <div class="row">
+        <button id="disconnect" class="btn connect_btn" style="margin-top: 0;margin-left: 40%;"> DISCONNECT </a></button> 
+    </div>
+  </div>
+   
   <!-- Javascripts -->
   <script src="materialize-css/js/materialize.min.js"></script>
   <script src="jquery/jquery.min.js" type="text/javascript"></script>
