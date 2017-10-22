@@ -10,6 +10,4 @@ function sendData(button){
 		var timeDiff = endTime-startTime;
 		Materialize.toast('operation took ' + timeDiff/1000 + ' seconds to complete.', 4000, 'blue lighten-1'); 
   });
-  
-  
 }

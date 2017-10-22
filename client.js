@@ -1,4 +1,4 @@
-var socket = require('socket.io-client')('http://10.11.223.153:3000');
+var socket = require('socket.io-client')('http://10.11.157.135:3000');
 var status = 'stop';
 var speed = '';
 var distance = 0;

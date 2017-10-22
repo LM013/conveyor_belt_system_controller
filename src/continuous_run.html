@@ -14,48 +14,18 @@
 </head>
 
 <body>
-	<header id="mainHeader">
+	<header>
   </header>
-  <script type="text/javascript"> $('#mainHeader').load('/header') </script>
+  <script type="text/javascript"> $('header').load('/header') </script>
 
-  <!--<div id="title_holder">
-    <header id="title"> CONTINUOUS RUN </header>
-    
-    <div id="button_holder">
-      <div id="ops">
-        <div id="stop" onclick=sendData(this) class="button">
-           <div id="bg" style="padding-top: 8px; height:45px; background-color:#FF9999;"> STOP </div>
-        </div>
-        <div id="forward" onclick=sendData(this) class="button">
-           <div id="bg" style="padding-top: 8px; height:45px; background-color:#66B2FF;"> FORWARD </div>
-        </div>
-        <div id="reverse" onclick=sendData(this) class="button">
-            <div id="bg" style="padding-top: 8px; height:45px; background-color:#FFFF99;"> REVERSE </div>
-        </div>
-      </div>
-      
-      <div id="label"> START </div>
-
-      <div id="speed_levels">
-         <div id="low" onclick=sendData(this) class="button speed">
-            <div id="bg" style="padding-top: 8px; height:45px; background-color:#99FF99;"> LOW </div>
-         </div>
-         <div id="med" onclick=sendData(this) class="button speed">
-            <div id="bg" style="padding-top: 8px; height:45px; background-color:#99FF99;"> MEDIUM </div>
-         </div>
-         <div id="high" onclick=sendData(this) class="button speed">
-            <div id="bg" style="padding-top: 8px; height:45px; background-color:#99FF99;"> HIGH </div>
-         </div>
-      </div>  
+  <div class="container" style="padding-top: 8%;">
+    <div class="row">
+      <div class="col s12" style="background-color: white; margin-top: 2%; text-align: center; font-size: 25px; font-weight: bolder;"> OPERATION </div>
     </div>
-  </div>-->
+  </div>
 
   <div class="container">
-    <div class="row col s12">
-      <header id="title"> CONTINUOUS RUN </header>
-    </div>
-    <div class="divider"></div>
-    <div class="row" style="margin-top: 2%;">
+    <div class="row">
       <div class="col s4" style="padding-left: 35px;">
         <div id="stop" onclick=sendData(this) class="button">
           <div id="bg" style="padding-top: 8px; height:45px; background-color:#FF9999;"> STOP </div>
@@ -72,11 +42,17 @@
         </div>
       </div>
     </div>
-    <div class="divider"></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="container">
     <div class="row">
-      <div class="col s12" style="background-color: white; margin-top: 2%; text-align: center; font-size: 25px; font-weight: bolder;"> START </div>
+      <div class="col s12" style="background-color: white; margin-top: 2%; text-align: center; font-size: 25px; font-weight: bolder;"> SPEED </div>
     </div>
-    <div class="divider"></div>
+  </div>
+  <div class="divider"></div>
+  
+  <div class="container">  
     <div class="row">
       <div class="col s4" style="padding-left: 35px;">
          <div id="low" onclick=sendData(this) class="button speed">
