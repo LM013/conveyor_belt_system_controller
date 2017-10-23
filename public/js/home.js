@@ -16,7 +16,7 @@ $(document).ready(function(){
           $('<br/>')
           ,
           $('<button>')
-            .attr('id', 'i')
+            .attr('id', i)
             .attr('class','btn connect_btn')
             .text('CONNECT')
           ,
