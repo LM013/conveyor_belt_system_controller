@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var socket = require('socket.io-client')('http://10.11.223.153:3000');
+var socket = require('socket.io-client')('http://10.11.157.135:3000');
 
 //restrict access to pages that requires log in
 function restrict(req,res,next){
@@ -50,6 +50,7 @@ router.post('/select',restrict, function(req, res,next){
 	var body = {};
 	body.id = req.body.id;
 	body.username = req.session.user.username;
+	console.log(body);
 	
 	socket.emit('select', body, function(result){
 		console.log(result);

@@ -12,14 +12,10 @@ body {
 }
 
 #title{
-	margin: 0 auto;
-	align-content: center;
-	background-color: teal darken;
-
 }
 
 #img_holder{
-	margin-top: 3%;
+	margin-top: 10%;
 }
 
 #jogging_btn:hover, #run_btn:hover{

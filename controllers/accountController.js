@@ -4,6 +4,7 @@
 var mysql = require('mysql');
 var md5 = require('md5');
 var sha1 = require('sha1');
+var socket = require('socket.io-client')('http://10.11.157.135:3000');
 
 var connection =  mysql.createConnection({
     host: 'localhost',
@@ -38,6 +39,13 @@ module.exports= {
   },
 
   logout: function(req, res){
+    if(req.session.user.controller){
+      var body = {};
+      body.i = req.session.user.controller;
+      body.username = req.session.user.username;
+
+      socket.emit('deselect', body, function(result){});
+    }
     req.session.reset();
     res.redirect('/');
   },

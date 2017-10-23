@@ -12,6 +12,4 @@ function sendData(button){
     	Materialize.toast(res.message, 3000, 'red lighten-1');
     
   });
-  
-  
 }

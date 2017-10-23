@@ -83,3 +83,7 @@ body {
 	width: 75px;
 	padding-top: 25px;
 }
+
+.progress{
+	background-color: grey;
+}
