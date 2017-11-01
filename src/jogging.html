@@ -62,31 +62,17 @@
         <div id="move_three" class="belt_buttons" onclick=sendData(this)> 3.0m </div>
       </div>  
     </div>
+  </div>
 
-
-  <div class="progress" style="height: 30px; border-radius: 5px; margin-top: 5%;">
-      <div class="determinate" style="width:12%; text-align: center;">0.5m</div>
-  </div>  
-
-  <div class="progress" style="height: 30px; border-radius: 5px; margin-top: 5%;">
-      <div class="determinate" style="width:28%;">1.0</div>
-  </div> 
-
-  <div class="progress" style="height: 30px; border-radius: 5px; margin-top: 5%;">
-      <div class="determinate" style="width:45%;"></div>
-  </div>  
-
-  <div class="progress" style="height: 30px; border-radius: 5px; margin-top: 5%;">
-      <div class="determinate" style="width:63%;"></div>
-  </div>  
-
-  <div class="progress" style="height: 30px; border-radius: 5px; margin-top: 5%;">
-      <div class="determinate" style="width:78%;"></div>
-  </div>  
-
-  <div class="progress" style="height: 30px; border-radius: 5px; margin-top: 5%;">
-      <div class="determinate" style="width:100%;"></div>
-  </div>  
+  <div class="container">
+    <div class="col s2 cyan">
+      <form action="#">
+        <p id='value' class='center'></p>
+        <input id='distance' type="range" value="0" min="0" max="3" step="0.5"/>
+      </form>
+      <h5 id="direction" class='center'></h5>
+    </div>
+   </div>
     
   <!-- Javascripts -->
     <script src="materialize-css/js/materialize.min.js"></script>

@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var socket = require('socket.io-client')('http://10.11.157.135:3000');
+var socket = require('socket.io-client')('http://192.168.8.108:3000');
 
 //restrict access to pages that requires log in
 function restrict(req,res,next){
+	console.log(req.session.user);
 	if (req.session.user) {
     	next();
   	} else {
@@ -12,7 +13,10 @@ function restrict(req,res,next){
 }
 
 router.get('/', function(req, res, next) {
-	res.sendFile('index.html', { root: __dirname + '/../src/'} );
+	if(req.session.user)
+		res.redirect('home');
+	else
+		res.sendFile('index.html', { root: __dirname + '/../src/'} );
 });
 
 router.get('/header', function(req, res, next) {
@@ -21,7 +25,7 @@ router.get('/header', function(req, res, next) {
 
 router.get('/home', restrict, function(req, res,next){
 	if(req.session.user.controller)
-		res.redirect('operation')
+		res.redirect('operation');
 	else
 		res.sendFile('home.html', { root: __dirname + '/../src/'} );
 });
@@ -73,7 +77,6 @@ router.post('/deselect', restrict, function(req,res,next){
 	});
 });
 
-
 router.post('/send', restrict, function(req,res,next){
 	var body = {};
 	body.i = req.session.user.controller;
@@ -86,6 +89,15 @@ router.post('/send', restrict, function(req,res,next){
 		res.json(result);
 	});
 });
+
+router.get('/controllerStatus', restrict, function(req, res, next){
+	var body = {};
+	body.i = req.session.user.controller;
+	socket.emit('status', body, function(result){
+		res.json(result);
+	});
+});
+
 
 router.get('/list', restrict, function(req,res, next){
 	socket.emit('length', function(result){

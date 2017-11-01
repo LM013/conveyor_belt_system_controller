@@ -1,3 +1,9 @@
+$(document).ready(function(){
+  $.get('/controllerStatus', function(data){
+    setStatus(data);
+  });
+});
+
 function sendData(button){
 	var startTime = new Date().getTime();
 	var data = 'control='+button.id;
@@ -5,11 +11,30 @@ function sendData(button){
     if(res.status == 200){
     	Materialize.toast(res.message, 3000, 'green lighten-1');  
     	var endTime = new Date().getTime();
-			var timeDiff = endTime-startTime;
-			Materialize.toast('operation took ' + timeDiff/1000 + ' seconds to complete.', 4000, 'blue lighten-1'); 
+		  var timeDiff = endTime-startTime;
+		  Materialize.toast('Controller received message in ' + timeDiff/1000 + ' seconds.', 4000, 'blue lighten-1'); 
     }
     else
     	Materialize.toast(res.message, 3000, 'red lighten-1');
-    
+    setStatus(res);
   });
+}
+
+function setStatus(data){
+  var str = window.location + "";
+  $('#direction').html('DIRECTION: ' + data.direction.toUpperCase());
+  if(str.endsWith('jogging')){
+    jogging(data);
+  } else {
+    continuous(data);
+  }
+}
+
+function jogging(res){
+  $('#distance').val(res.distance);
+  $('#value').html(res.distance);
+}
+
+function continuous(res){
+  alert(continuous);
 }
