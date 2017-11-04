@@ -8,11 +8,10 @@ body {
   padding: 0;
 }
 
-#ops{
-	height: 190px;
-	width: 700px;
-	padding-top: 30px;
-	padding-left: 50px;
+#ops, #speed_levels{
+	margin: 0 auto;
+	padding: 0 auto;
+	padding-top: 25px;
 }
 
 #label{
@@ -20,14 +19,7 @@ body {
 	font-size: 30px;
 	font-weight: bold;
 	text-align: center;
-	padding-top: 15px;
-}
-
-#speed_levels{
-	height: 170px;
-	width: 700px;
-	padding-top: 30px;
-	padding-left: 50px;
+	padding-top: 10px;
 }
 
 .button{
@@ -93,4 +85,14 @@ a.icon-teal{
 	width: 500px;
 	height: 700px;
 	text-align: center;
+}
+
+#direction{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#speed_value{
+	font-size: 20px;
+	font-weight: bold;
 }

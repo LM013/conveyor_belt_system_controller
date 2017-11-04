@@ -1,12 +1,12 @@
-$('#loginForm').on('submit', function(e){
+$('#changepass_form').on('submit', function(e){
 	e.preventDefault();
-	var username = $('#username').val();
-	var password = $('#password').val();
+	var old_pw = $('#old_pw').val();
+	var new_pw = $('#new_pw').val();
 	var message = '';
-	var data = "username=" + username + "&password=" + password;
-	if(username!=''&&password!=''){
-		fetch('/api/account/login', {
-			method: 'POST',
+	var data = "old_pw=" + old_pw + "&new_pw=" + new_pw;
+	if(old_pw !='' && new_pw!=''){
+		fetch('/api/account/changepassword', {
+			method: 'PUT',
 	        credentials: 'include',
 	        headers: {
 	            'Content-Type': 'application/x-www-form-urlencoded',
@@ -16,22 +16,21 @@ $('#loginForm').on('submit', function(e){
 		})
 		.then((res) => {
 			switch (res.status) {
-	            case 403: message = 'Username and Password combination'
-	                + ' does not match!'; break;
-	            case 404: message = 'Username is not registered to'
-	             + ' any account!'; break;
-	            case 500: message = 'Log-in failed. Please try again.';
-	                break;
-	            default: message = 'Error logging in!'; break;
+	            case 403: message = 'Old password does not match'; break;
+	            case 500: message = 'Change password failed. Please try again.';break;
+	            default: message = 'Change password failed. Please try again. '; break;
 	        }
 	        if (res.status === 200) {
-	            window.location.href="/home";
+	            Materialize.toast('Password successfully changed', 4000, 'green');
 	        } else {
 	            Materialize.toast(message, 4000, 'red');
 	            $("#password").val("");
 			}
+			$('#old_pw').val('');
+			$('#new_pw').val('');
+			$('input[type=submit').enable();
 		});
 	} else {
-		Materialize.toast("Username and Password Required", 3000, 'red lighten-1');
+		Materialize.toast("Fill up all fields", 3000, 'red lighten-1');
 	}
 });

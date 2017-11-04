@@ -87,3 +87,13 @@ body {
 .progress{
 	background-color: grey;
 }
+
+#direction{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#value{
+	font-size: 20px;
+	font-weight: bold;
+}

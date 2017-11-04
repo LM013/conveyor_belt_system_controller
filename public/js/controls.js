@@ -22,7 +22,6 @@ function sendData(button){
 
 function setStatus(data){
   var str = window.location + "";
-  $('#direction').html('DIRECTION: ' + data.direction.toUpperCase());
   if(str.endsWith('jogging')){
     jogging(data);
   } else {
@@ -32,9 +31,13 @@ function setStatus(data){
 
 function jogging(res){
   $('#distance').val(res.distance);
-  $('#value').html(res.distance);
+  $('#value').html('DISTANCE: ' + res.distance + 'm');
+  $('#direction').html('DIRECTION: ' + res.direction.toUpperCase());
 }
 
 function continuous(res){
-  alert(continuous);
+  if(res.state == 'stop'){
+    $('#direction').html(res.state.toUpperCase());
+  }
+  else $('#direction').html('RUNNING ' + res.direction.toUpperCase() + ' IN ' + res.speed.toUpperCase() + ' SPEED');
 }

@@ -53,7 +53,6 @@ $('#loginForm').on('submit', function(e){
 	        body: data
 		})
 		.then((res) => {
-			console.log(res);
 			switch (res.status) {
 	            case 403: message = 'Username and Password combination'
 	                + ' does not match!'; break;
