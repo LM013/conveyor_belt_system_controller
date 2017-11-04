@@ -1,0 +1,103 @@
+@media screen and (max-width: 768px) {
+	body{
+		background-color: black;
+	}
+}
+
+body { 
+  background: url("../images/mcl.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+header{
+	padding: 10px;
+}
+
+@viewport{
+	zoom: 10.0;
+	width: extend-to-zoom;
+}
+
+@ms-viewport{
+	width: extend-to-zoom;
+	zoom: 5.0;
+}
+
+#th{
+	background-color: lightgrey; 
+	height: 170px; 
+	margin-top: 45px; 
+	padding-top: 20px; 
+	font-size: 52px; 
+	font-weight: bold; 
+	color: black;
+	opacity: 0.7;
+}
+
+#loginL:hover{
+	height: 60px;
+	width: 145px;
+}
+
+#signupL:hover{
+	height: 60px;
+	width: 145px;
+}	
+
+#login_div{
+	padding: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 3%;
+	height: 400px;
+	width: 280px;
+	opacity: 0.9;
+	background-color: #ffffff;
+	border-radius: 20px;
+	border: 2px solid grey;
+}
+
+#signup_div{
+	padding: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 3%;
+	height: 480px;
+	width: 300px;
+	opacity: 0.9;
+	background-color: #ffffff;
+	border-radius: 20px;
+	border: 2px solid grey;
+}
+
+#login_container{
+	height: 273px;
+	width: 400px;
+}
+
+#signup_container{
+	align-content: center;
+	height: 335px;
+	width: 450px;
+}
+
+.panel-body{
+	height: 250px;
+}
+
+.input-field input:focus + label{
+   color: #ef5350 !important;
+}
+
+.row .input-field input:focus{
+   border-bottom: 1px solid #ef5350 !important;
+   box-shadow: 0 1px 0 0 #ef5350 !important
+}
+
+.input-field input[type=text]:focus {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+}
