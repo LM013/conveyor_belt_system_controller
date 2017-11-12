@@ -8,6 +8,15 @@ body {
   margin: 0;
 }
 
+textarea{
+	height: 1500px;
+	background-color: pink;
+}
+
+#log{
+	background-color: blue;
+}
+
 #cardHolder{
 	padding-left: 300px 118.8%;
 	padding-top: 10px;
@@ -47,6 +56,10 @@ body {
 
 .connect_btn:hover, .logs_btn:hover{
 	opacity: 0.7;
+}
+
+.modal{
+	height: 1500px;
 }
 
 i.icon-white{
