@@ -72,6 +72,18 @@ io.on('connection', function(socket) {
     });
   });
 
+  socket.on('get_logs', function(data, fn){
+    var i = data.id;
+
+    try{
+       connectedControllers[i].emit('logs', function(result){
+        fn(result);  
+      });
+    }catch(err){
+      console.log(err);
+    };
+  })
+
   socket.on('select', function(data, fn){
     var i = data.id;
     console.log(index);
