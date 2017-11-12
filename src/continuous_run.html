@@ -14,42 +14,58 @@
 </head>
 
 <body>
-	<header id="mainHeader">
-  </header>
-  <script type="text/javascript"> $('#mainHeader').load('/header') </script>
+	<header></header>
+  <script type="text/javascript"> $('header').load('/header') </script>
   
-  <div id="title_holder">
-    <header id="title"> CONTINUOUS RUN </header>
-    
-    <div id="button_holder">
-      <div id="ops">
-        <div id="stop" onclick=sendData(this) class="button">
-           <div id="bg" style="padding-top: 8px; height:45px; background-color:#FF9999;"> STOP </div>
+  <div class="divider"></div>
+  <div class="container top"> 
+    <div class="row">
+       <div id="ops" class="container">
+        <div class="col s4">
+          <div id="stop" onclick=sendData(this) class="button">
+             <div class="bg" style="background-color:#FF9999;"> STOP </div>
+          </div>
+        </div> 
+        <div class="col s4">
+          <div id="forward" onclick=sendData(this) class="button">
+             <div class="bg" style="background-color:#66B2FF;"> FORWARD </div>
+          </div>
         </div>
-        <div id="forward" onclick=sendData(this) class="button">
-           <div id="bg" style="padding-top: 8px; height:45px; background-color:#66B2FF;"> FORWARD </div>
-        </div>
-        <div id="reverse" onclick=sendData(this) class="button">
-            <div id="bg" style="padding-top: 8px; height:45px; background-color:#FFFF99;"> REVERSE </div>
+        <div class="col s4">  
+          <div id="reverse" onclick=sendData(this) class="button">
+              <div class="bg" style="background-color:#FFFF99;"> REVERSE </div>
+          </div>
         </div>
       </div>
-      
-      <div id="label"> START </div>
-
-      <div id="speed_levels">
-         <div id="low" onclick=sendData(this) class="button speed">
-            <div id="bg" style="padding-top: 8px; height:45px; background-color:#99FF99;"> LOW </div>
-         </div>
-         <div id="med" onclick=sendData(this) class="button speed">
-            <div id="bg" style="padding-top: 8px; height:45px; background-color:#99FF99;"> MEDIUM </div>
-         </div>
-         <div id="high" onclick=sendData(this) class="button speed">
-            <div id="bg" style="padding-top: 8px; height:45px; background-color:#99FF99;"> HIGH </div>
-         </div>
-      </div>  
     </div>
-
   </div>
+  <div class="container" id="label"> SPEED </div>
+  <div class="container">
+    <div class="row">
+      <div id="speed_levels" class="container"> 
+        <div class="col s4">
+          <div id="low" onclick=sendData(this) class="button speed">
+            <div class="bg" style="background-color:#99FF99;"> LOW </div>
+          </div>
+        </div>
+        <div class="col s4">
+          <div id="med" onclick=sendData(this) class="button speed">
+            <div class="bg" style="background-color:#99FF99;"> MEDIUM </div>
+          </div>  
+        </div>
+        <div class="col s4">
+          <div id="high" onclick=sendData(this) class="button speed">
+            <div class="bg" style="background-color:#99FF99;"> HIGH </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container bot">
+    <div class="row">
+      <h5 id="direction" class="center"></h5>
+    </div>   
+  </div>   
 
   <!-- Javascripts -->
   <script src="materialize-css/js/materialize.min.js"></script>

@@ -1,39 +1,39 @@
-// be sure to import your model here
-// var error = require('../public/constants/ErrorTypes');
-
-var mysql = require('mysql');
+var pg = require('pg');
 var md5 = require('md5');
-var sha1 = require('sha1');
-var socket = require('socket.io-client')('http://10.11.157.135:3000');
+var socket = require('socket.io-client')('https://conveyor-belt-controller.herokuapp.com');
 
-var connection =  mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'tiger',
-    database: 'conveyor'
-});
+
+var conString = 'postgres://test_user:tiger@localhost/postgres';
+
+var client = new pg.Client({connectionString: conString,});
+client.connect();
 
 module.exports= {
   login: function(req, res) {
-    var queryString = "SELECT * FROM Accounts where username=?"; 
-    connection.query(queryString, [req.body.username], function(err, rows,  fields){
-      if(!err){
-        if(rows.length == 0){
-          res.status(404).send({status: 'Username not found'});
-        } else {
-          var user = rows[0];
-          if(user.password != md5(sha1(req.body.password))){
-              res.status(403).send({status: 'incorrect password'});
-          } else { 
-              delete user.password; // delete the password from the session
-              req.session.user = user;  //refresh the session value
-              req.session.user.controller = null;
-              res.status(200).send({status:"logged in"});
+    var query = {
+      text: "SELECT * FROM accounts WHERE username = $1",
+      values: [req.body.username],
+    };  
+    client.query(query, function(err, result){
+      if(err){
+        console.log(err);
+        res.status(500).send({status: 'Server Error'});
+      } 
+      else{
+        console.log(result);
+        if(result.rowCount == 0){
+          res.status(404).send({status: 'Username not found'})
+        } else{
+          var user = result.rows[0];
+          if(user.password != md5(req.body.password)){
+            res.status(403).send({status: 'Incorrect password'});
+          } 
+          else{
+            delete user.passwod;
+            req.session.user = user;
+            res.status(200).send({status: 'logged in'});
           }
         }
-      } else {
-        console.log(err);
-        res.status(500).send({status: 'error'});
       }
     });
   },
@@ -51,44 +51,55 @@ module.exports= {
   },
 
   whoami: function(req,res){
-    var queryString = "SELECT * FROM Accounts where id=?"; 
-    connection.query(queryString, [req.session.user.id], function(err, rows,  fields){
-      if(!err){
-        if(rows.length == 0){
-            res.status(404).send({status: 'Username not found'});
-        } else {
-            var user = rows[0];
-            res.writeHead(200, { 'Content-Type': 'application/json'});
-            res.end(JSON.stringify(user));
-            res.end();
-        }
-      } else {
-        console.log(err);
-        res.status(500).send({status: 'error'});
-      }
-    });
+    res.json(req.session.user);
   },
 
   signup: function(req, res){
-      var queryString = "INSERT Accounts (firstName, lastName, username, password) values (?, ?, ?, MD5(SHA1(?)))"
-      connection.query(queryString, [req.body.first_name, req.body.last_name, req.body.new_username, req.body.new_password], function(err, rows, fields){
-          if(!err){
-              var queryString = "SELECT * FROM Accounts where id=?";
-              connection.query(queryString, [rows.insertId], function(err, rows){
-                  if(!err){
-                      var user = rows[0]; 
-                      delete user.password; // delete the password from the session
-                      req.session.user = user;  //refresh the session value
-                      res.status(200).send({status:"logged in"});
-                  }
-              });
-          } else {
-              if(err.code == 'ER_DUP_ENTRY'){
-                  res.status(403).send({status: 'Username already exists'});
-              } else{
-                  res.status(500).send({status: 'error'});
-              }
-          }
+      var query = {
+        text: 'INSERT into accounts (firstName, lastName, username, password) values ($1, $2, $3, md5($4)) RETURNING *;',
+        values: [req.body.first_name, req.body.last_name, req.body.new_username, req.body.new_password],
+      };
+      client.query(query, function(err, result){
+        if(err){
+          if(err.code=23505)
+            res.status(403).send({status: 'Username already taken'});
+          else
+            res.status(500).send({status: 'Server Error'});
+        } else{
+          var user = result.rows[0]
+          delete user.password; // delete the password from the session
+          req.session.user = user;  //refresh the session value
+          res.status(200).send({status:"logged in"});
+        }
       });
+  },
+
+  changePassword: function(req, res){
+    var query = {
+      text: 'SELECT * FROM accounts where id=$1;',
+      values: [req.session.user.id],
+    };
+    client.query(query, function(err, result){
+      if(err){
+          res.status(500).send({status: 'Server Error'});
+      } else{
+        var user = result.rows[0]
+        if(user.password != md5(req.body.old_pw))
+          res.status(403).send({status: 'Old password does not match'});
+        else{
+          var q2 = {
+            text: 'UPDATE accounts SET password = md5($1) WHERE id=$2;',
+            values: [req.body.new_pw, req.session.user.id] 
+          }
+          client.query(q2, function(err, newRes){
+            if(err){
+              res.status(500).send({status: 'Server Error'});
+            } else {
+              res.status(200).send({status: 'password changed'});
+            }
+          });
+        }
+      }
+    });
   }
 }

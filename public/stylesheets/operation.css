@@ -8,14 +8,18 @@ body {
   margin: 0;
 }
 
-#operations_div{
-}
-
-#title{
+.connect_btn{
+  margin-top: 0;
+  margin-left: 40%;
 }
 
 #img_holder{
 	margin-top: 10%;
+}
+
+#run_btn, #jogging_btn{
+  height:300px; 
+  width:300px;
 }
 
 #jogging_btn:hover, #run_btn:hover{

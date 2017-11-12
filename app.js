@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var account = require('./routes/account');
 var session = require('client-sessions');
-var mysql = require('mysql');
+var pg = require('pg');
 var io = require('socket.io');
 var app = express();
 // view engine setup
