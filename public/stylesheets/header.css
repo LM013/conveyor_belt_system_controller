@@ -13,6 +13,22 @@ header{
     position: fixed;
 }
 
+i{
+	font-size: 45px
+}
+
+i.icon-white{
+	color: #ffffff;
+}
+
+
+a.icon-teal{
+	background-color:  #00868B;
+	border-radius: 50px;
+	width: 50px;
+	vertical-align: center;
+}
+
 #homeButton{
 	float: left;
 	width: 20px;
@@ -33,16 +49,4 @@ header{
 	padding-top: 11px;
 	text-align: right;	
 	width: 40px;
-}
-
-i.icon-white{
-	color: #ffffff;
-}
-
-
-a.icon-teal{
-	background-color:  #00868B;
-	border-radius: 50px;
-	width: 50px;
-	vertical-align: center;
 }

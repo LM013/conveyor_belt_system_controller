@@ -44,6 +44,7 @@ body {
 .logs_btn{
 	margin-top: 10px;
 }
+
 .connect_btn:hover, .logs_btn:hover{
 	opacity: 0.7;
 }

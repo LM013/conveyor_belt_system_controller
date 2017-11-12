@@ -8,16 +8,6 @@ body {
   margin: 0;
 }
 
-#title{
-	width: 50%;
-	margin: 0 auto;
-	margin-top: 3%;
-	font-size: 35px;
-	text-align: center;
-	padding-top: 10px;
-	border-radius: 15px;
-	border-radius: 20px;
-}
 
 #ops{
 	margin: 0 auto;
@@ -31,15 +21,6 @@ body {
 	margin: 0 auto;
 }
 
-#belt{
-	height: 100px;
-	width: 600px;
-	border-radius: 10px;
-	padding-top: 13px; 
-	margin-left: auto;
-	margin-right: auto;
-	padding-left: 20px;
-}
 
 .buttons{
 	height: 150px;
@@ -56,12 +37,6 @@ body {
 	height: 140px;
 	width: 140px;
 	padding-top: 50px;
-}
-
-.highlight{
-	height: 50px;
-	background-color: white;
-	padding-top: 13px;
 }
 
 .belt_buttons{
@@ -84,8 +59,10 @@ body {
 	padding-top: 25px;
 }
 
-.progress{
-	background-color: grey;
+.highlight{
+	height: 50px;
+	background-color: white;
+	padding-top: 13px;
 }
 
 #direction{
