@@ -23,7 +23,7 @@ $(document).ready(function(){
           $('<br/>')
           ,
           $('<button>')
-            .attr('id', 'i')
+            .attr('id', i)
             .attr('data-target', 'modal' + i)
             .attr('class', 'btn logs_btn modal-trigger')
             .text('VIEW LOGS')
@@ -33,27 +33,8 @@ $(document).ready(function(){
         .attr('class', 'modal modal-fixed-footer')
         .append(
           $('<div>')
-            .attr('class', 'modal-content')
-            .append(
-              $('<h4>')
-                .text('Controller #' + i)
-              ,
-              $('<table>')
-                .append(
-                  $('<thead>')
-                    .append(
-                      $('<tr>')
-                        .append(
-                          $('<th>')
-                            .text('User'),
-                          $('<th>')
-                            .text('Operation'),
-                          $('<th>')
-                            .text('Time')   
-                        )
-                    )
-                )    
-            ),
+            .attr('id', 'log' + i)
+          ,
           $('<div>')
             .attr('class', 'modal-footer')
             .append(  
@@ -65,9 +46,10 @@ $(document).ready(function(){
     )
   }
 
-  $('.modal').modal();
-  $('.connect_btn').on('click', connect);
-  $('.logs_btn').on('click', view_logs);
+    $('.modal').modal();
+    $('.connect_btn').on('click', connect); 
+    $('.logs_btn').on('click', view_logs);
+
   });
 });
 
@@ -83,5 +65,16 @@ function connect(){
 }
 
 function view_logs(){
-  $('#modal'+i).modal('open');
+  var id = this.id - 1;
+  var data = 'id='+id;
+  $.post('/logs', data, function(res){
+    var text = '';
+    var lines = res.body;
+    for(var i = 0 ; i < lines.length; i++){
+      if(lines[i] == '') continue;
+      var temp = lines[i].split(';');
+      text += temp[0] + '<br/>' + temp[1] + '<br><hr>';
+    };  
+    $('#log'+(id+1)).html(text);
+  });
 }
