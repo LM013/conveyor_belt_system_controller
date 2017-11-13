@@ -1,7 +1,7 @@
 /*var pg = require('pg');*/
 const { Client } = require('pg');
 var md5 = require('md5');
-var socket = require('socket.io-client')('http://10.11.157.135:3000');
+var socket = require('socket.io-client')('https://conveyor-belt-controller.herokuapp.com');
 
 
 var conString = 'postgres://test_user:tiger@localhost/postgres';
