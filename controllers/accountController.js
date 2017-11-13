@@ -1,11 +1,19 @@
-var pg = require('pg');
+/*var pg = require('pg');*/
+const { Client } = require('pg');
 var md5 = require('md5');
 var socket = require('socket.io-client')('http://10.11.157.135:3000');
 
 
 var conString = 'postgres://test_user:tiger@localhost/postgres';
 
-var client = new pg.Client({connectionString: conString,});
+/*var client = new pg.Client({connectionString: conString,});
+client.connect();*/
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
+
 client.connect();
 
 module.exports= {
