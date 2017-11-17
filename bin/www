@@ -3,10 +3,33 @@
 /**
  * Module dependencies.
  */
-
 var app = require('../app');
 var debug = require('debug')('conveyor-belt-system-controller:server');
 var http = require('http');
+var pg = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
+
+client.connect();
+
+/**
+Create tables for accounts
+*/
+var query = {
+  text: "CREATE TABLE Accounts{id SERIAL PRIMARY KEY,fname VARCHAR(255) NOT NULL,lname VARCHAR(255) NOT NULL,username VARCHAR(255) NOT NULL PRIMARY KEY,password VARCHAR(255)}"
+};  
+client.query(query, function(err, result){
+  if(err){
+    console.log(err);
+  } 
+  else{
+    console.log(result);
+  }
+});
+
 
 
 /**
