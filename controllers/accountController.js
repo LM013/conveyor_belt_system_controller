@@ -3,7 +3,7 @@ var md5 = require('md5');
 var socket = require('socket.io-client')('https://conveyor-belt-controller.herokuapp.com');
 
 
-var conString = 'postgres://test_user:tiger@localhost/postgres';
+var conString = 'postgres://itrwdrbeqpcboj:24c633a70d27a9d47a0fcd4dcd6bfb4e3ab3e716aa38daba2b25c343b8610630@ec2-23-21-85-76.compute-1.amazonaws.com:5432/dd6qhnsinq2043';
 
 var client = new pg.Client({connectionString: conString,});
 client.connect();
