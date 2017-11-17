@@ -1,4 +1,4 @@
-var pg = require('pg');
+  var pg = require('pg');
 var md5 = require('md5');
 var socket = require('socket.io-client')('https://conveyor-belt-controller.herokuapp.com');
 
@@ -61,7 +61,7 @@ module.exports= {
       };
       client.query(query, function(err, result){
         if(err){
-          if(err.code=23505)
+          if(err.code==23505)
             res.status(403).send({status: 'Username already taken'});
           else
             res.status(500).send({status: 'Server Error'});
