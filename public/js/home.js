@@ -30,7 +30,7 @@ $(document).ready(function(){
         ),
       $('<div>')
         .attr('id', 'modal' + i)
-        .attr('class', 'modal modal-fixed-footer')
+        .attr('class', 'modal modal-footer')
         .append(
           $('<div>')
             .attr('id', 'log' + i)
