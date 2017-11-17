@@ -6,6 +6,7 @@ $(document).ready(function(){
 
 function disconnect(){
   $.post('/deselect', function(res){
+    alert('deselecting this shit');
     if(res.status == 400){
       Materialize.toast(res.message, 3000, 'red lighten-1');  
     } else {
