@@ -1,5 +1,5 @@
-/*var pg = require('pg');*/
-const { Client } = require('pg');
+var pg = require('pg');
+// const { Client } = require('pg');
 var md5 = require('md5');
 var socket = require('socket.io-client')('https://conveyor-belt-controller.herokuapp.com');
 
@@ -9,7 +9,7 @@ var conString = 'postgres://itrwdrbeqpcboj:24c633a70d27a9d47a0fcd4dcd6bfb4e3ab3e
 /*var client = new pg.Client({connectionString: conString,});
 client.connect();*/
 
-const client = new Client({
+const client = new pg.Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 });

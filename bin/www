@@ -6,9 +6,9 @@
 var app = require('../app');
 var debug = require('debug')('conveyor-belt-system-controller:server');
 var http = require('http');
-const { Client } = require('pg');
+var pg = require('pg');
 
-const client = new Client({
+const client = new pg.Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 });
