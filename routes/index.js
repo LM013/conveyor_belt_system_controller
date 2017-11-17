@@ -12,6 +12,10 @@ function restrict(req,res, next){
   	}
 }
 
+socket.on('disconnected_controller', function(i){
+
+});
+
 router.get('/', function(req, res, next) {
 	if(req.session.user)
 		res.redirect('home');
@@ -51,16 +55,16 @@ router.get('/change_password', restrict, function(req, res, next){
 });
 
 router.post('/logs', restrict, function(req, res, next){
-	console.log('------------- getting log -------------');
 	var body = {};
 	body.id = req.body.id;
 
 	console.log(body);
 	socket.emit('get_logs', body, function(result){
-		console.log(result);
-		if(result.status == 200){
+		if(result.status == 500){
+			delete req.session.user.controller;
+			res.redirect('/home');
+		} else if(result.status == 200);
 			res.json(result);
-		}
 	});
 });
 
@@ -70,9 +74,15 @@ router.post('/select', restrict, function(req, res, next){
 	body.username = req.session.user.username;
 	
 	socket.emit('select', body, function(result){
-		if(result.status == 200)
-			req.session.user.controller = req.body.id;
-		res.json(result);
+		if(result.status == 500){
+			delete req.session.user.controller;
+			res.redirect('/home');
+		}
+		else {
+			if(result.status == 200)
+				req.session.user.controller = req.body.id;
+			res.json(result);
+		}
 	});
 });
 
@@ -82,9 +92,8 @@ router.post('/deselect', restrict, function(req,res, next){
 	body.username = req.session.user.username;
 
 	socket.emit('deselect', body, function(result){
-		if(result.status == 200)
-			delete req.session.user.controller;
-		res.json(result);
+		delete req.session.user.controller;
+		res.redirect('/home');
 	});
 });
 
@@ -95,7 +104,11 @@ router.post('/send', restrict, function(req,res, next){
 	body.control = req.body.control;
 
 	socket.emit('control', body, function(result){
-		res.json(result);
+		if(result.status == 500) {
+			delete req.session.user.controller;
+			res.redirect('/home');
+		} else
+			res.json(result);
 	});
 });
 
@@ -103,7 +116,11 @@ router.get('/controllerStatus', restrict, function(req, res, next){
 	var body = {};
 	body.i = req.session.user.controller;
 	socket.emit('status', body, function(result){
-		res.json(result);
+		if(result.status == 500) {
+			delete req.session.user.controller;
+			res.redirect('/home');
+		} else
+			res.json(result);
 	});
 });
 
