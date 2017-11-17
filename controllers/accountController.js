@@ -1,4 +1,5 @@
-var pg = require('pg');
+/*var pg = require('pg');*/
+const { Client } = require('pg');
 var md5 = require('md5');
 var socket = require('socket.io-client')('https://conveyor-belt-controller.herokuapp.com');
 
