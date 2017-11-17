@@ -1,13 +1,6 @@
 var pg = require('pg');
-// const { Client } = require('pg');
 var md5 = require('md5');
 var socket = require('socket.io-client')('https://conveyor-belt-controller.herokuapp.com');
-
-
-var conString = 'postgres://itrwdrbeqpcboj:24c633a70d27a9d47a0fcd4dcd6bfb4e3ab3e716aa38daba2b25c343b8610630@ec2-23-21-85-76.compute-1.amazonaws.com:5432/dd6qhnsinq2043';
-
-/*var client = new pg.Client({connectionString: conString,});
-client.connect();*/
 
 const client = new pg.Client({
   connectionString: process.env.DATABASE_URL,
@@ -69,6 +62,7 @@ module.exports= {
       };
       client.query(query, function(err, result){
         if(err){
+          console.log(err);
           if(err.code==23505)
             res.status(403).send({status: 'Username already taken'});
           else
