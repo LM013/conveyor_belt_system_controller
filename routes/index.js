@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var socket = require('socket.io-client')('https://conveyor-belt-controller.herokuapp.com');
+var socket = require('socket.io-client')('http://localhost:3000');
 
 //restrict access to pages that requires log in
 function restrict(req,res, next){
@@ -39,11 +39,30 @@ router.get('/operation', restrict, function(req, res, next){
 });
 
 router.get('/continuous_run', restrict, function(req, res, next){
-	res.sendFile('continuous_run.html', { root: __dirname + '/../src/'});
+	var body = {};
+	body.i = req.session.user.controller;
+	body.username = req.session.user.username;
+	body.operation = 'continuous_run';
+
+	socket.emit('operation', body, function(result){
+			if(result.status==200){
+				res.sendFile('continuous_run.html', { root: __dirname + '/../src/'});
+			}
+	});
+
 });
 
 router.get('/jogging', restrict, function(req, res, next){
-	res.sendFile('jogging.html', { root: __dirname + '/../src/'} );
+	var body = {};
+	body.i = req.session.user.controller;
+	body.username = req.session.user.username;
+	body.operation = 'jogging';
+
+	socket.emit('operation', body, function(result){
+			if(result.status==200){
+				res.sendFile('jogging.html', { root: __dirname + '/../src/'} );
+			}
+	});
 });
 
 router.get('/change_password', restrict, function(req, res, next){
@@ -68,7 +87,7 @@ router.post('/select', restrict, function(req, res, next){
 	var body = {};
 	body.id = req.body.id;
 	body.username = req.session.user.username;
-	
+
 	socket.emit('select', body, function(result){
 		if(result.status == 200)
 			req.session.user.controller = req.body.id;
@@ -108,6 +127,7 @@ router.get('/controllerStatus', restrict, function(req, res, next){
 });
 
 router.get('/list', restrict, function(req,res, next){
+  console.log('hereee');
 	socket.emit('length', function(result){
 		res.status(200).json(result);
 	});

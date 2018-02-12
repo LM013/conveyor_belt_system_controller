@@ -62,6 +62,7 @@ io.on('connection', function(socket) {
       if(connectedControllers[i] != null)
         length++;
     }
+    console.log('bin: ' + length);
     fn(length);
   });
 
@@ -77,7 +78,7 @@ io.on('connection', function(socket) {
 
     try{
        connectedControllers[i].emit('logs', function(result){
-        fn(result);  
+        fn(result);
       });
     }catch(err){
       console.log(err);
@@ -90,24 +91,36 @@ io.on('connection', function(socket) {
 
     try{
       connectedControllers[i].emit('select', data, function(result){
-        fn(result);  
+        fn(result);
       });
     }catch(err){
       console.log(err);
     };
   })
 
-  socket.on('deselect', function(data, fn){ 
+  socket.on('deselect', function(data, fn){
     var i = data.i;
-    
+
     try{
       connectedControllers[i].emit('deselect', data, function(result){
-        fn(result);  
+        fn(result);
       });
     }catch(err){
       console.log(err);
     }
   });
+
+  socket.on('operation', function(data, fn){
+    var i = data.i;
+
+    try{
+      connectedControllers[i].emit('operation',data , function(result){
+        fn(result);
+      });
+    }catch(err){
+      console.log(err);
+    }
+  })
 
   socket.on('control', function(data, fn){
     var i = data.i;

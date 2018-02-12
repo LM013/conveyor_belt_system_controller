@@ -1,9 +1,9 @@
 var pg = require('pg');
 var md5 = require('md5');
-var socket = require('socket.io-client')('https://conveyor-belt-controller.herokuapp.com');
+var socket = require('socket.io-client')('http://localhost:3000');
 
 
-var conString = 'postgres://test_user:tiger@localhost/postgres';
+var conString = 'postgres://diegosevilla:tiger@localhost/conveyor';
 
 var client = new pg.Client({connectionString: conString,});
 client.connect();
@@ -13,12 +13,12 @@ module.exports= {
     var query = {
       text: "SELECT * FROM accounts WHERE username = $1",
       values: [req.body.username],
-    };  
+    };
     client.query(query, function(err, result){
       if(err){
         console.log(err);
         res.status(500).send({status: 'Server Error'});
-      } 
+      }
       else{
         console.log(result);
         if(result.rowCount == 0){
@@ -27,7 +27,7 @@ module.exports= {
           var user = result.rows[0];
           if(user.password != md5(req.body.password)){
             res.status(403).send({status: 'Incorrect password'});
-          } 
+          }
           else{
             delete user.passwod;
             req.session.user = user;
@@ -61,7 +61,7 @@ module.exports= {
       };
       client.query(query, function(err, result){
         if(err){
-          if(err.code=23505)
+          if(err.code==23505)
             res.status(403).send({status: 'Username already taken'});
           else
             res.status(500).send({status: 'Server Error'});
@@ -89,7 +89,7 @@ module.exports= {
         else{
           var q2 = {
             text: 'UPDATE accounts SET password = md5($1) WHERE id=$2;',
-            values: [req.body.new_pw, req.session.user.id] 
+            values: [req.body.new_pw, req.session.user.id]
           }
           client.query(q2, function(err, newRes){
             if(err){
