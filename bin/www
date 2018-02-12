@@ -3,33 +3,10 @@
 /**
  * Module dependencies.
  */
+
 var app = require('../app');
 var debug = require('debug')('conveyor-belt-system-controller:server');
 var http = require('http');
-var pg = require('pg');
-
-const client = new pg.Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
-
-client.connect();
-
-/**
-Create tables for accounts
-*/
-var query = {
-  text: "CREATE TABLE IF NOT EXISTS Accounts (id SERIAL PRIMARY KEY,fname VARCHAR(255) NOT NULL,lname VARCHAR(255) NOT NULL,username VARCHAR(255) NOT NULL UNIQUE,password VARCHAR(255) )"
-};  
-client.query(query, function(err, result){
-  if(err){
-    console.log(err);
-  } 
-  else{
-    console.log(result);
-  }
-});
-
 
 
 /**
@@ -85,21 +62,15 @@ io.on('connection', function(socket) {
       if(connectedControllers[i] != null)
         length++;
     }
+    console.log('bin: ' + length);
     fn(length);
   });
 
   socket.on('status', function(data, fn){
     var i = data.i;
-    
-    try{
-      connectedControllers[i].emit('status', function(result){
-        fn(result);
-      });
-    }catch(err){
-        console.log(err);
-        var error = {status:500, message:'controller disconnected'};
-        fn(error);
-    }
+    connectedControllers[i].emit('status', function(result){
+      fn(result);
+    });
   });
 
   socket.on('get_logs', function(data, fn){
@@ -107,12 +78,10 @@ io.on('connection', function(socket) {
 
     try{
        connectedControllers[i].emit('logs', function(result){
-        fn(result);  
+        fn(result);
       });
     }catch(err){
       console.log(err);
-      var error = {status:500, message:'controller disconnected'};
-      fn(error);
     };
   })
 
@@ -122,28 +91,36 @@ io.on('connection', function(socket) {
 
     try{
       connectedControllers[i].emit('select', data, function(result){
-        fn(result);  
+        fn(result);
       });
     }catch(err){
       console.log(err);
-      var error = {status:500, message:'controller disconnected'};
-      fn(error);
     };
   })
 
-  socket.on('deselect', function(data, fn){ 
+  socket.on('deselect', function(data, fn){
     var i = data.i;
-    
+
     try{
       connectedControllers[i].emit('deselect', data, function(result){
-        fn(result);  
+        fn(result);
       });
     }catch(err){
       console.log(err);
-      var error = {status:500, message:'controller disconnected'};
-      fn(error);
     }
   });
+
+  socket.on('operation', function(data, fn){
+    var i = data.i;
+
+    try{
+      connectedControllers[i].emit('operation',data , function(result){
+        fn(result);
+      });
+    }catch(err){
+      console.log(err);
+    }
+  })
 
   socket.on('control', function(data, fn){
     var i = data.i;
@@ -154,8 +131,6 @@ io.on('connection', function(socket) {
       });
     }catch(err){
       console.log(err);
-      var error = {status:500, message:'controller disconnected'};
-      fn(error);
     }
   });
 
