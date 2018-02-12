@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var socket = require('socket.io-client')('https://conveyor-belt-controller.herokuapp.com');
+var socket = require('socket.io-client')('http://localhost:3000');
 
 //restrict access to pages that requires log in
 function restrict(req,res, next){
