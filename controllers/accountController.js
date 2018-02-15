@@ -1,6 +1,7 @@
 var pg = require('pg');
 var md5 = require('md5');
 var socket = require('socket.io-client')('https://conveyor-belt-controller.herokuapp.com');
+//var socket = require('socket.io-client')('http://localhost:3000');
 
 //FOR LOCALHOST
 /*var conString = 'postgres://gpepayawal:tiger@localhost/conveyor';
@@ -62,7 +63,7 @@ module.exports= {
 
   signup: function(req, res){
       var query = {
-        text: 'INSERT into accounts (firstName, lastName, username, password) values ($1, $2, $3, md5($4)) RETURNING *;',
+        text: 'INSERT into accounts (fname, lname, username, password) values ($1, $2, $3, md5($4)) RETURNING *;',
         values: [req.body.first_name, req.body.last_name, req.body.new_username, req.body.new_password],
       };
       client.query(query, function(err, result){
